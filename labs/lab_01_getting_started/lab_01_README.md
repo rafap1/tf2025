@@ -1,4 +1,4 @@
-Lab 02 - 02 - First Deployment with Terraform
+Lab 01 - Getting Started
 
 NOTE: This first lab is quite verbose in the instructions to help you in your initial contact with Terraform.
 Future labs will be less detailed.
@@ -7,6 +7,8 @@ Future labs will be less detailed.
 - You have installed terraform (version specified by instructor) in your system.
 - You have installed visual studio code or similar IDE 
 - You have configured your sso profile in your machine
+
+- Note: if the course uses "cloud-based" VMs per student, these will be probably pre-configured
 
 ## 2. Lab Objectives
 1. Obtain aws credentials to use in aws
@@ -32,7 +34,7 @@ Future labs will be less detailed.
 
 First off open a terminal in your VS Code and move to the directory :
 
-`    tf_labs/2_labs/Module_02_Getting_Started/lab_02_02_first_deployment`
+`   labs/lab_01_getting_started`
 
 (for Windows users you may see the path slightly differently)
 
