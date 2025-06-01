@@ -1,9 +1,0 @@
-Useful info to facilitate copy / paste
-
-aws command to login
-
-aws sso login --profile sso-student
-
-link for login:
-https://gkcourse.awsapps.com/start
-

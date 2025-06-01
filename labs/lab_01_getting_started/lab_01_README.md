@@ -1,7 +1,7 @@
 Lab 01 - Getting Started
 
 NOTE: This first lab is quite verbose in the instructions to help you in your initial contact with Terraform.
-Future labs will be less detailed.
+Subsequent labs will be less detailed.
 
 ## 1. Lab prerequisites
 - You have installed terraform (version specified by instructor) in your system.
@@ -27,48 +27,7 @@ Future labs will be less detailed.
 - Variables
 - Resources
 
-## 1. Obtain Credentials
-- Terraform needs credentials to interact with AWS
-- In this course lab setup you obtain temporary credentials (this is important) using the command "aws sso login"
-- You will do this every day one or more times during the labs
-
-First off open a terminal in your VS Code and move to the directory :
-
-`   labs/lab_01_getting_started`
-
-(for Windows users you may see the path slightly differently)
-
-To get temporary AWS credentials associated with your profile run the following command:
-```sh
-aws sso login --profile sso-student
-```
-- This will open a web page in your default browser where you will enter your credentials:
-    - Username:  `studentXX` where XX is yourstudent (e.g. 07, 11, etc.)
-
-<img src="./images/login_username.png" alt="Login Username" width="30%">
-
-    - Password:  as indicated by the instructor
-<img src="./images/login_password.png" alt="Login Password" width="25%">
-
-- Eventually you will have a login successful screen such as:
-
-<img src="./images/login_success.png" alt="Login Success" width="30%">
-
-- Note that "sso-student" is the same profile configured in file `providers.tf`
-
-### Verify Credentials:
-To ensure your credentials work, issue the command:
-
-`aws sts get-caller-identity --profile sso-student`
-
-You should get an output similar to 
-```
-% aws sts get-caller-identity --profile sso-student
-Account: '0123456012345'
-Arn: arn:aws:sts::0123456012345:assumed-role/AWSReservedSSO_terraform-student_3e8d1ef4d90fad54/studentXX
-UserId: AROA3CTVDDH7QBMUG3CH4:studentXX
-```
-## 2. Review terraform configuration
+## 3. Review terraform configuration
 - Note: this is a quick overview - we will see all of this in detail in other modules
 - Open the file main.tf
 - Observe the different "blocks" in the configuration 
@@ -78,7 +37,7 @@ UserId: AROA3CTVDDH7QBMUG3CH4:studentXX
     - creation of a aws_instance resource.  Creating resources is the main objective of terraform. 
         - this resource is an AWS EC2 Instance (a virtual machine)
         - virtual machines have a lot of parameters. In this case we specify only three. For the rest, AWS uses default values.
-## 3. Test terraform commands - create our first AWS EC2 instance (Virtual Machine) with Terraform
+## 4. Test terraform commands - create our first AWS EC2 instance (Virtual Machine) with Terraform
 - Verify (again) that terraform is running with `terraform -v`.  Compare the version number with the version in the `terraform` block.
 - Format the code with `terraform fmt`. You may want to make some changes to the indentation of the code and run `terraform fmt` again.
 - Let us validate the code with `terraform validate` - this is an initial syntactic check that verifies that the code is well written.  It could still fail when we plan or apply, but using `terraform validate` is a faster way to catch silly errors quickly
@@ -141,29 +100,20 @@ aws_instance.server: Creation complete after 13s [id=i-0896b4798f7d4d929]
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ```
 
-## 4. Verify in the AWS Console (GUI) that the instance has been created
-- Now login to your individual account using the  the AWS Console 
+## 5. Verify in the AWS Console (GUI) that the instance has been created
 - Go to url : https://gkcourse.awsapps.com/start
-    - Username : studentXX  (where XX is your own number assigned by the instructor)
-    - Password : as assigned by your instructor
-- You will then see a page similar to the one below (this is for `student00`, you will be `studentXX`):
+    - Username : student-t1-XX  or student-t2-XX (where XX is your own number assigned by the instructor)
+    - Password : as assigned by your instructor or as changed by you
+- You will then see a page similar to the one below (this is for `student00`, you will be for example `student-t1-XX`):
 
-<img src="./images/login_to_console1.png" alt="Console Login with SSO (1)" width="60%">
-
-- if you click on the little arrow after the "studentXX" you will see the profiles you can access. In this case a single one.
-
-<img src="./images/login_to_console2.png" alt="Console Login with SSO (2)" width="60%">
-
-- Click on the `terraform-student` link and 
-
-- Now navigate to the EC2 page in the AWS console.   Make sure you are in the `eu-south-2` region. You should see a single EC2 instance called "web". You may want to compare the values in your `main.tf` file with those of the instance:
+- Once logged in, navigate to the EC2 page in the AWS console.   Make sure you are in the `eu-west-1` region. You should see a single EC2 instance called "web". You may want to compare the values in your `main.tf` file with those of the instance:
     - What is the instance type ?
     - What is the ami-id 
     - What is the Name ? 
 - Take a look at the file `terraform.tfstate` - this file contains what terraform knows it has configured in AWS.  You may want to look at the state file every time you make changes in the exercises or challenges below.
 - Run the command `terraform state list` - this will show you a summary of the contents of the state file: one line per resource. 
     - TIP: For this config the output appears trivial, but this is actually a very useful command in practice for large deployments.
-## 5. Making changes
+## 6. Making changes
 - Now we make a single and simple change in our terraform configuration. 
 - In the instance configuration, modify the tag.  Change "web" to "web-server". You should end up with something like:
 
@@ -193,7 +143,7 @@ aws_instance.server: Modifications complete after 1s [id=i-09c79134d28e28cf5]
 
 - Just for fun, try `terraform plan` again, but before doing so, ask yourself what do you expect to happen.
 
-## 6. Some challenges for you:
+## 7. Some challenges for you:
 - Change the default value of variable `instance_type` from `t3.micro` to `t3.large`
     - run `terraform plan` - what is the output?  
     - run `terraform validate` - what is the output? (this may be a bit surprising, but the config is syntactically correct)
@@ -204,7 +154,13 @@ aws_instance.server: Modifications complete after 1s [id=i-09c79134d28e28cf5]
     - this is a relatively advanced topic and will also be discussed in class
 - Create a second virtual machine by copying and pasting the configuration of the resource
     - you will have 2 resources 
+- Advanced (we will see it later in the course) 
+    - create 2 virtual machines using `count`
 
 - Advanced - create a second virtual machine using the `count` value.
-## 5. Destroying the infrastructure
+## 8. Destroying the infrastructure
+- Try the command `terraform destroy`
+- You will have to approve the proposed changes (destroying the infra) with 'yes'.
+- Take a look at the state file after destroying the infra
+- Run `terraform state list`
 
