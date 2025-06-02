@@ -5,10 +5,11 @@ aws command to login:
 aws sso login --profile sso-student
 
 Web link for login:
-
 https://gkcourse.awsapps.com/start
 
-Useful aws commands
 
-aws ec2 
+Sample aws commands using the sso-student profile:
 
+aws sts get-caller-identity --profile sso-student
+aws ec2 describe-instances --profile sso-student
+aws s3 ls --profile sso-student
