@@ -4,7 +4,7 @@ data "aws_vpc" "def_vpc" {
   default = true
 }
 
-# Subnet data source
+# Subnet data source - obtain the subnets from the default VPC 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet
 data "aws_subnets" "def_vpc_subnets" {
   filter {

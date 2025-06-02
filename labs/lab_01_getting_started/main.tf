@@ -48,7 +48,7 @@ variable "instance_type" {
 ## Since we do not specify subnet AWS 
 ## will select a public subnet in the default VPC
 resource "aws_instance" "server" {
-  ami                         = var.my_ubuntu_ami
+  ami                         = data.aws_ami.ubuntu_24_04_x86.id
   instance_type               = var.instance_type
   tags = {
     Name = "web-server"
