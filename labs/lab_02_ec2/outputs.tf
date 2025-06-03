@@ -3,10 +3,6 @@ output "public_ip" {
   value       = aws_instance.server1.public_ip
 }
 
-# output "key_name" {
-#   description = "SSH Key Name"
-#   value       = aws_instance.server1.key_name
-# }
 
 output "ami" {
   description = "AMI of instance"

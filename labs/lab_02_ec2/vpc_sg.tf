@@ -6,13 +6,7 @@
 resource "aws_security_group" "sec_web" {
   vpc_id = data.aws_vpc.def_vpc.id
   name   = "sec-web-${local.name_suffix}"
-  ingress {
-    description = "SSH from specific addresses"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = var.sec_allowed_external
-  }
+
   ingress {
     description = "Ping from specific addresses"
     from_port   = 8 # ICMP Code 8 - echo  (0 is echo reply)

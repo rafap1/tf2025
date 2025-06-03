@@ -37,7 +37,7 @@ variable "instance_type" {
   description = "instance type"
   type        = string
   default     = "t3.micro"
-  # Validation of the instance type - must be t3.micro or t2.micro
+  # Validation of the instance type - must be t3.micro or t3.nano
   validation {
     condition     = var.instance_type == "t3.micro" || var.instance_type == "t3.nano"
     error_message = "The instance type must be t3.micro or t3.nano"
@@ -54,3 +54,4 @@ resource "aws_instance" "server" {
     Name = "web-server"
   }
 }
+
