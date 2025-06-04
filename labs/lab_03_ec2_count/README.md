@@ -40,3 +40,4 @@ Test it... is it enough with terraform validate?  or do you need to do terraform
 
 
 
+lab2 y lab3
