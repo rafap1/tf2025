@@ -1,5 +1,12 @@
 Lab 2 - Terraform files.  Terraform and provider version
 
+NOTE: You can view this markdown file rendered in Visual code with the following key combinations:
+
+	- Windows **Ctrl + Shift + V**
+	- Linux : **Ctrl + Shift + V**
+	- macOS:  **command  + shift +V**
+
+
 This lab creates the same basic AWS infra as Lab_01 : a security group and a virtual machine (EC2 instance, in AWS-speak)
 The code in this lab almost the same code as in lab 1, but we place it in a set of .tf (and a new .tfvars) files:
 
@@ -35,10 +42,27 @@ Default version (when not overridden by .terraform-version or TFENV_TERRAFORM_VE
     - this is because in our code we "pinned" the terraform version to 1.12.XX 
 - Change the code in providers.tf to:  `required_version = "~> 1.11.0"`
 
-#### 2.2 Provider Version
+#### 2.2 Provider Version - specifying version
 - Providers are plugins, essentially extensions to the terraform code to handle a specific API (in our case AWS provider for the AWS API)
 - AWS and Terraform constanly release new versions of the AWS provider, and this may sometimes introduce features that break or modify existing infrastructure.
 - Thus we want a way to "pin" the specific version of the provider.
     - Think of this as using a specific version of a java library or python module in your code (e.g. requirements.txt file for python)
 - Suggestion: read the docs on this subject in : https://developer.hashicorp.com/terraform/tutorials/configuration-language/provider-versioning
 
+#### 2.3 Provider version - Dependency lock file
+- Please read the documentation on the dependency lock file : https://developer.hashicorp.com/terraform/language/files/dependency-lock  
+- As a practice we will perform the HashiCorp tutorial for this topic "Lock and upgrade provider versions": https://developer.hashicorp.com/terraform/tutorials/configuration-language/provider-versioning
+
+- create a directory in you machine. If using a course provided lab, create the directory: /home/curso/terraform-tutorials
+- change directory to  `terraform-tutorials`
+- Follow the instructions of the tutorial. You will clone a repo from hashicorp
+- IMPORTANT: you do NOT need to create a hashicorp account (do so if you want only)
+- IMPORTANT: In your terraform config under the aws provider block: 
+    - change the region to "eu-west-1" 
+    - add  `profile = "sso-student"`
+```hcl
+provider "aws" {
+  region = "eu-west-1"
+  profile = "sso-student"
+}
+```
