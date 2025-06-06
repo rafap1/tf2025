@@ -13,14 +13,20 @@ variable "profile" {
 
 variable "lab_number" {
   type    = string
-  default = "lab03"
+  default = "lab04"
 }
 
-## specific for "count"
-variable "num_instances" {
-  type    = number
-  default = 2
+## Names of instances
+variable "instance_names" {
+  type    = list(string)
+  default = ["dep1", "dep2", "dep3", "dep4"]
+  validation {
+    condition     = length(var.instance_names) > 0 && length(var.instance_names) <= 4
+    error_message = "Wrong number of instance names"
+  }
 }
+
+
 ## Environment and Project
 variable "company" {
   type        = string
@@ -35,7 +41,7 @@ variable "environment" {
 
 variable "project" {
   type    = string
-  default = "mdr-03"
+  default = "proj99"
 }
 
 ## VPC parameters
@@ -52,7 +58,7 @@ variable "vpc_cidr" {
 
 variable "instance_type" {
   type    = string
-  default = "t3.micro"
+  default = "t3.nano"
 }
 
 variable "my_ami" {
@@ -61,6 +67,10 @@ variable "my_ami" {
   default     = "ami-0b752bf1df193a6c4"
 }
 
+# variable "key_name" {
+#   type = string
+#   default = "tf-course"
+# }
 
 
 ## Security Groups

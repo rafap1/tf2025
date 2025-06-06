@@ -1,0 +1,51 @@
+# Lab 6 - for_each
+
+## Purpose of lab
+- The main purpose of this lab is to explore the use 'map' variables and `for_each` to create multiple resources
+- This is much more powerful than `count` but entails a bit more complication
+
+## Explore code
+- See the definition of the map in variables.tf
+- Deploy code
+- Try `terraform state list` -- see that the instances are now 'indexed' by the map
+```
+data.aws_ami.ubuntu_24_04_x86
+data.aws_subnets.def_vpc_subnets
+data.aws_vpc.def_vpc
+aws_instance.example["app-01"]
+aws_instance.example["web-01"]
+aws_instance.example["web-02"]
+aws_security_group.sec_web
+```
+
+## Explore the output expressions  
+- these are now more complex
+- ask a reputable LLM allowed by your company policy to explain the expressions to you (seriously, it works) -- make sure you do not paste any sensitive info to the LLM input
+
+- take a look at terraform.tfvars - remove the default from the map definition in variables.tf and uncomment the value in terraform.tfvars
+
+## Explore adding and removing instances
+- For example remove "web-01" - what happens to the others.  Compare with what happened in lab_03_ec2_count_2
+- Add another box, say "app-02" 
+- More advanced (preview of chapter on state management) try to remove the state of one of the machines.  
+aws_instance.example["app-01"]
+```
+terraform state rm 'aws_instance.example["app-01"]'
+Removed aws_instance.example["app-01"]
+Successfully removed 1 resource instance(s).
+```
+- now try terraform plan again.  what does it plan to do?
+- what happened to the instance "app-01" we created initially? Is it still there? Check it out in the AWS console.
+
+## Bonus content - unrelated to the above - Look at the locals.tf file
+- we have a number of local variables that we can use to play with for_each, loops, etc.
+- You can explore their values with commands such as
+```
+echo local.test7 | terraform console
+{
+  "app-01-54.155.48.110" = "ec2-54-155-48-110.eu-west-1.compute.amazonaws.com"
+  "web-01-108.130.27.156" = "ec2-108-130-27-156.eu-west-1.compute.amazonaws.com"
+  "web-02-54.170.176.70" = "ec2-54-170-176-70.eu-west-1.compute.amazonaws.com"
+}
+```
+

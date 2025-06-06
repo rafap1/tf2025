@@ -6,21 +6,32 @@ variable "region" {
 }
 
 variable "profile" {
-  type    = string
-  default = "sso-student"
+  type = string
 }
 
-
-variable "lab_number" {
-  type    = string
-  default = "lab03"
+## Lab specific variable
+variable "ec2_instances" {
+  description = "Map of instance name to instance properties"
+  type = map(object({
+    instance_type = string
+    disk_size_gb  = number
+  }))
+  default = {
+    "web-01" = {
+      instance_type = "t3.nano"
+      disk_size_gb  = 10
+    }
+    "web-02" = {
+      instance_type = "t3.nano"
+      disk_size_gb  = 12
+    }
+    "app-01" = {
+      instance_type = "t3.micro"
+      disk_size_gb  = 20
+    }
+  }
 }
 
-## specific for "count"
-variable "num_instances" {
-  type    = number
-  default = 2
-}
 ## Environment and Project
 variable "company" {
   type        = string
@@ -34,8 +45,11 @@ variable "environment" {
 }
 
 variable "project" {
-  type    = string
-  default = "mdr-03"
+  type = string
+}
+
+variable "lab_number" {
+  type = string
 }
 
 ## VPC parameters
@@ -43,7 +57,7 @@ variable "vpc_cidr" {
   type    = string
   default = "10.99.0.0/16"
   validation {
-    condition     = can(cidrnetmask(var.vpc_cidr)) ## Needs work
+    condition     = can(cidrnetmask(var.vpc_cidr))
     error_message = "Invalid CIDR for VPC."
   }
 }
@@ -61,6 +75,10 @@ variable "my_ami" {
   default     = "ami-0b752bf1df193a6c4"
 }
 
+# variable "key_name" {
+#   type = string
+#   default = "tf-course"
+# }
 
 
 ## Security Groups
@@ -68,13 +86,11 @@ variable "sec_allowed_external" {
   description = "CIDRs from which access is allowed"
   type        = list(string)
   default     = ["0.0.0.0/0"]
-  # default = ["2.37.1.5/32"]
 }
 
 ## ECS Parameters
 variable "special_port" {
   type        = string
   description = "TCP port where Foobar application listens"
-
 }
 
