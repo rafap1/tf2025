@@ -26,16 +26,7 @@ aws_security_group.sec_web
 
 ## Explore adding and removing instances
 - For example remove "web-01" - what happens to the others.  Compare with what happened in lab_03_ec2_count_2
-- Add another box, say "app-02" 
-- More advanced (preview of chapter on state management) try to remove the state of one of the machines.  
-aws_instance.example["app-01"]
-```
-terraform state rm 'aws_instance.example["app-01"]'
-Removed aws_instance.example["app-01"]
-Successfully removed 1 resource instance(s).
-```
-- now try terraform plan again.  what does it plan to do?
-- what happened to the instance "app-01" we created initially? Is it still there? Check it out in the AWS console.
+- Add another box, say "app-02"  - explore state and console again
 
 ## Bonus content - unrelated to the above - Look at the locals.tf file
 - we have a number of local variables that we can use to play with for_each, loops, etc.
@@ -49,3 +40,5 @@ echo local.test7 | terraform console
 }
 ```
 
+### Destroy Infra
+- Perform terraform destroy to remove all the infra and save costs
