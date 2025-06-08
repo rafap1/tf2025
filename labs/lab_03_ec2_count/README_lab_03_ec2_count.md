@@ -1,5 +1,7 @@
 # Lab 3 - EC2 using count
 
+aws sso login --profile sso-student
+
 ## Purpose of lab
 - Explore creating multiple resources with 'count'
 - Explore further the state
@@ -35,7 +37,8 @@ aws_security_group.sec_web
 ```
 - Note the 3 aws_instance resources indexed from 0 - 2 (count=0, count=1, count=2)
 - Try exploring the state of one of the instances created.  Single quotes are important!
-terraform state show 'aws_instance[0]'
+
+echo 'aws_instance.server[0]' | terraform console
 
 - You will get a lot of output about the first instance (0)
 
