@@ -1,0 +1,193 @@
+# Lab - Using 3rd Party Modules
+
+## Intro 
+This lab explores using Terraform modules created by third parties.
+
+We use the very popular "official" Terraform module
+- VPC: https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest
+
+
+## Calling the module
+The initial configuration contains a vpc created with the module.
+Look for the lines:
+
+```
+module "vpc_one" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.21.0" ## Best practice to specify version
+
+  name               = "vpc-${local.name_suffix}-1"
+  cidr               = var.vpc_cidr1
+  enable_nat_gateway = false
+  single_nat_gateway = true
+
+  azs             = ["${var.region}a", "${var.region}b", "${var.region}c"]
+  public_subnets  = var.pub_subnets
+  private_subnets = var.priv_subnets
+
+}
+```
+
+Think of this configuration as "calling" a module function that is available at: "terraform-aws-modules/vpc/aws"
+We are calling the function with 7 parameters, named:
+  name   
+  cidr 
+  enable_nat_gateway
+  single_nat_gateway
+  azs     
+  public_subnets  
+  private_subnets  
+
+The result of calling this is a "construct"  that we are calling "vpc_one"  
+
+IMPORTANT: "vpc_one"  is an arbitrary name we have chosen; terwe could also call it "primera_vpc" (or "foobar")
+
+The "module call" has created a number of resources as we expected:  vpc, subnets, internet gateway etc...
+We can see them if we run terraform state list.  The names are somewhat strange and new to us, but underneath they are really resources.
+
+```
+% terraform state list
+data.aws_ami.ubuntu_24_04_x86
+data.aws_availability_zones.available
+aws_instance.server_priv[0]
+aws_instance.server_priv[1]
+aws_instance.server_priv[2]
+aws_instance.server_pub
+module.vpc_one.aws_default_network_acl.this[0]
+module.vpc_one.aws_default_route_table.default[0]
+module.vpc_one.aws_default_security_group.this[0]
+module.vpc_one.aws_internet_gateway.this[0]
+module.vpc_one.aws_route.public_internet_gateway[0]
+module.vpc_one.aws_route_table.private[0]
+module.vpc_one.aws_route_table.public[0]
+module.vpc_one.aws_route_table_association.private[0]
+module.vpc_one.aws_route_table_association.private[1]
+module.vpc_one.aws_route_table_association.public[0]
+module.vpc_one.aws_route_table_association.public[1]
+module.vpc_one.aws_route_table_association.public[2]
+module.vpc_one.aws_subnet.private[0]
+module.vpc_one.aws_subnet.private[1]
+module.vpc_one.aws_subnet.public[0]
+module.vpc_one.aws_subnet.public[1]
+module.vpc_one.aws_subnet.public[2]
+module.vpc_one.aws_vpc.this[0]
+```
+So far we have seen how to call the module with "input" variables.
+
+The modules have also "output" variables - 
+The official VPC module has 100+ possible outputs but not all are available (depending on our input values)
+
+## Using the result of the module call
+
+We use some of those resources when creating an ec2 instance (file ec2.tf)
+Below we have a resource with `count`
+We will create as many virtual machines as public subnets
+The public subnets created by the "vpc_one" module call are:
+
+module.vpc_one.aws_subnet.public[0]
+module.vpc_one.aws_subnet.public[1]
+module.vpc_one.aws_subnet.public[2]
+
+These have the "module.vpc_one" name prepended but otherwise are normal aws_subnet resources.
+
+Looking at the ec2.tf code:
+```
+resource "aws_instance" "server_priv" {
+  count         = local.num_pub_subnets
+  ami           = data.aws_ami.ubuntu_24_04_x86.id
+  instance_type = var.instance_type
+  subnet_id     = module.vpc_one.public_subnets[count.index]  <<<<< HERE >>>>>
+  tags = {
+    Name = "vm-priv-${local.name_suffix}-${count.index}"
+  }
+}
+```
+
+
+### Using the Module outputs
+- The module itself generates outputs, just as our "main" module has been generating outputs all along in this course.
+- These outputs are documented in the module page: https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest?tab=resources
+- As of version 5.21.0 of the aws_vpc module there are 119 outputs 
+
+
+### Calling the module again to create a 2nd VPC
+- Now uncomment the code in the vpc_with_modules.tf file
+
+```
+module "vpc_two" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.21.0" ## Best practice to specify version
+
+  name               = "vpc-${local.name_suffix}-2"
+  cidr               = "192.168.0.0/16"
+  enable_nat_gateway = false
+  single_nat_gateway = true
+
+  azs             = ["${var.region}a", "${var.region}b","${var.region}c"]
+  public_subnets  = ["192.168.1.0/24", "192.168.2.0/24", "192.168.3.0/24"]  
+}
+```
+- For this to work we need to do `terraform init` again.  This is because terraform "downloads" the module code again for each "invocation" of the module.
+- To confirm this look at the .terraform directory or run `tree -L 2 .terraform`
+
+```
+% tree .terraform -L 2
+.terraform
+├── modules
+│   ├── modules.json
+│   ├── vpc_one
+│   └── vpc_two
+└── providers
+    └── registry.terraform.io
+
+```
+- Perform terraform validate, plan, apply and look again at the state file..
+- terraform state list shows the resources associated with the 2nd VPC created (vpc_two)
+
+```
+% terraform state list
+data.aws_ami.ubuntu_24_04_x86
+data.aws_availability_zones.available
+aws_instance.server_priv[0]
+aws_instance.server_priv[1]
+aws_instance.server_priv[2]
+aws_instance.server_pub
+module.vpc_one.aws_default_network_acl.this[0]
+module.vpc_one.aws_default_route_table.default[0]
+module.vpc_one.aws_default_security_group.this[0]
+module.vpc_one.aws_internet_gateway.this[0]
+module.vpc_one.aws_route.public_internet_gateway[0]
+module.vpc_one.aws_route_table.private[0]
+module.vpc_one.aws_route_table.public[0]
+module.vpc_one.aws_route_table_association.private[0]
+module.vpc_one.aws_route_table_association.private[1]
+module.vpc_one.aws_route_table_association.public[0]
+module.vpc_one.aws_route_table_association.public[1]
+module.vpc_one.aws_route_table_association.public[2]
+module.vpc_one.aws_subnet.private[0]
+module.vpc_one.aws_subnet.private[1]
+module.vpc_one.aws_subnet.public[0]
+module.vpc_one.aws_subnet.public[1]
+module.vpc_one.aws_subnet.public[2]
+module.vpc_one.aws_vpc.this[0]
+module.vpc_two.aws_default_network_acl.this[0]
+module.vpc_two.aws_default_route_table.default[0]
+module.vpc_two.aws_default_security_group.this[0]
+module.vpc_two.aws_internet_gateway.this[0]
+module.vpc_two.aws_route.public_internet_gateway[0]
+module.vpc_two.aws_route_table.public[0]
+module.vpc_two.aws_route_table_association.public[0]
+module.vpc_two.aws_route_table_association.public[1]
+module.vpc_two.aws_route_table_association.public[2]
+module.vpc_two.aws_subnet.public[0]
+module.vpc_two.aws_subnet.public[1]
+module.vpc_two.aws_subnet.public[2]
+module.vpc_two.aws_vpc.this[0]
+```
+## Removing 2nd VPC
+- You can only remove it if there are no resources like aws_instance using VPC subnets, security groups etc.
+- Comment out the module call to vpc_two
+
+- terraform plan states: `Plan: 0 to add, 0 to change, 13 to destroy.`
+- These are precisely the 13 `module.vpc_two` resources we saw before.
+

@@ -11,7 +11,9 @@ output "instances_info" {
   value = {
     for name, inst in aws_instance.example :
     name => {
+      instance_id   = inst.id
       public_ip     = inst.public_ip
+      subnet_id     = inst.subnet_id
       private_ip    = inst.private_ip
       instance_type = inst.instance_type
       disk_size_gb  = inst.root_block_device[0].volume_size
