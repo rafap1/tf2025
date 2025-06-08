@@ -16,20 +16,20 @@ variable "ec2_instances" {
     instance_type = string
     disk_size_gb  = number
   }))
-  default = {
-    "web-01" = {
-      instance_type = "t3.nano"
-      disk_size_gb  = 10
-    }
-    "web-02" = {
-      instance_type = "t3.nano"
-      disk_size_gb  = 12
-    }
-    "app-01" = {
-      instance_type = "t3.micro"
-      disk_size_gb  = 20
-    }
-  }
+  # default = {
+  #   "web-01" = {
+  #     instance_type = "t3.nano"
+  #     disk_size_gb  = 10
+  #   }
+  #   "web-02" = {
+  #     instance_type = "t3.nano"
+  #     disk_size_gb  = 12
+  #   }
+  #   "app-01" = {
+  #     instance_type = "t3.micro"
+  #     disk_size_gb  = 20
+  #   }
+  # }
 }
 
 ## Environment and Project
