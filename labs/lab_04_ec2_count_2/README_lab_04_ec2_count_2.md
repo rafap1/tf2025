@@ -33,6 +33,7 @@ echo 'aws_instance.server[*].id' | terraform console
 ```
 - Now remove "dep2" from the list  
 (in default  or in terraform.tfvars)
+instance_names = ["dep1", "dep2", "dep3", "dep4"]
 
 - And do terraform apply - Let's see what instances we have....
 
