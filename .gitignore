@@ -1,7 +1,6 @@
 ## rafa stuff
 .DS_Store
 *.pem
-*.zip
 
 # Local .terraform directories
 .terraform/
