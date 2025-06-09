@@ -1,6 +1,4 @@
-lab_number = "09_02_local"
-
-region    = "eu-west-1"
+region    = "eu-south-2"
 profile   = "sso-student"
 company   = "WayneCorp"
 project   = "project1"

@@ -20,7 +20,7 @@ variable "lab_number" {
 ## AWS Specific parameters
 variable "region" {
   type    = string
-  default = "eu-west-1"
+  default = "eu-south-2"
 }
 
 variable "profile" {
@@ -43,10 +43,6 @@ variable "vpc_cidr" {
 variable "subnet_cidr" {
   description = "CIDR for subnet"
   type        = string
-}
-
-variable "lab_number" {
-  type = string
 }
 
 variable "server_os" {

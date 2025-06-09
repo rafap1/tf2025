@@ -1,3 +1,4 @@
+
 ## NOTE:  we call this file "root-main" for illustration purposes only. 
 ##     to help students distinguish it from the main.tf file in modules
 

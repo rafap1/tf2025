@@ -9,6 +9,8 @@ resource "aws_vpc" "web_server_vpc" {
 
   tags = {
     Name = var.vpc_name
+    # Uncomment as test during lab execution
+    module_name = "aws-web-vpc"
   }
 }
 

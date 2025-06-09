@@ -1,4 +1,4 @@
-Lab Terraform Modules - Example 2
+## Lab 08b - Creating Modules - github version
 
 Here we repeat the "WayneCorp" exercise, but this time the TF code of the modules is in a github repo, instead of a local path.
 

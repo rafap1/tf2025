@@ -16,7 +16,7 @@ variable "project" {
 ## AWS Specific parameters
 variable "region" {
   type    = string
-  default = "eu-west-1"
+  default = "eu-south-2"
 }
 
 variable "profile" {
