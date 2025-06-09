@@ -73,6 +73,12 @@ resource "aws_vpc" "web_server_vpc" {
 - perform terraform plan in project1 or project2 - verify that it will apply the new tag
 
 
+## Destroy lab infra
+- Move to directory project1 - terraform destroy
+- Move to directory project2 - terraform destroy
+
+- Bonus trick question: do you have to destroy anything in the modules directory?
+
 
 
 
