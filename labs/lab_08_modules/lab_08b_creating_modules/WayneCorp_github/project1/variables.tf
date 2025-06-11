@@ -13,6 +13,10 @@ variable "project" {
   type = string
 }
 
+variable "lab_number" {
+  type    = string
+}
+
 ## AWS Specific parameters
 variable "region" {
   type    = string

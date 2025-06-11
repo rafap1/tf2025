@@ -1,4 +1,4 @@
-## Lab 08b - Creating Modules - github version
+## Lab 08b-git - Creating Modules - github version
 
 Here we repeat the "WayneCorp" exercise, but this time the TF code of the modules is in a github repo, instead of a local path.
 
