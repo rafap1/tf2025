@@ -28,6 +28,7 @@ resource "aws_subnet" "public_subnet" {
     "tier" = "public", 
     "Name" = "public-${local.name_suffix}-${count.index}" 
   }
+
 }
 
 resource "aws_subnet" "private_subnet" {
@@ -40,6 +41,10 @@ resource "aws_subnet" "private_subnet" {
     "tier" = "private", 
     "Name" = "private-${local.name_suffix}-${count.index}" 
     }
+  timeouts {
+    create = "5m"
+    delete = "2m"
+  }
 }
 
 resource "aws_subnet" "db_subnet" {
