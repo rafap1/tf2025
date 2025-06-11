@@ -47,7 +47,7 @@ variable "lab_number" {
 # }
 
 variable "num_vms" {
-  type = number
+  type    = number
   default = 0
   validation {
     condition     = var.num_vms >= 0 && var.num_vms <= 5

@@ -108,13 +108,13 @@ resource "aws_route_table_association" "priv" {
 }
 
 resource "aws_route_table" "db_subnet_rt" {
-  count = var.az_count
+  count  = var.az_count
   vpc_id = aws_vpc.vpc1.id
   tags   = { "Name" = "database-${count.index}" }
 }
 
 resource "aws_route_table_association" "db" {
-  count = var.az_count
+  count          = var.az_count
   subnet_id      = aws_subnet.db_subnet[count.index].id
   route_table_id = aws_route_table.db_subnet_rt[count.index].id
 }

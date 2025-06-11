@@ -37,7 +37,7 @@ variable "lab_number" {
 
 ## VPC parameters
 variable "vpc_cidr" {
-  type    = string
+  type = string
   validation {
     condition     = can(cidrnetmask(var.vpc_cidr)) && endswith(var.vpc_cidr, "/16")
     error_message = "VPC CIDR must be valid and use a /16 subnet mask."
