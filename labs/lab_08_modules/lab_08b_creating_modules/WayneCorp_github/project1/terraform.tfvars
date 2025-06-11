@@ -1,4 +1,4 @@
-lab_number = "09_02_github"
+lab_number = "08b_github"
 
 region    = "eu-south-2"
 profile   = "sso-student"
@@ -9,4 +9,3 @@ server_os = "ubuntu"
 ec2_instance_type = "t3.nano"
 vpc_cidr          = "10.11.0.0/16"
 subnet_cidr       = "10.11.7.0/24"
-lab_number = "08b-git"
