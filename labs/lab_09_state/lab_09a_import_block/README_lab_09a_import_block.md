@@ -106,5 +106,46 @@ data.aws_vpc.def_vpc
 aws_security_group.sec_web
 ```
 
+### 2. Import the individual instance 
+- Uncomment the code between the "start STEP-2" and "end STEP-2"
+- In the import block change the id ("i-xxxxxx") to the one from machine 'test-mdr-dev-lab06-1' (from the aws cli command above)
+- Perform `terraform plan`, `terraform apply`
+- New state list - includes: aws_instance.example_1
+```
+data.aws_ami.ubuntu_24_04_x86
+data.aws_subnets.def_vpc_subnets
+data.aws_vpc.def_vpc
+aws_instance.example_1
+aws_security_group.sec_web
+```
 
+### 3. Import the four instances created with for_each
+- Uncomment the code between the "start STEP-3" and "end STEP-3"
+- In each of the import blocks change "i-xxxxxx" with the instance ID of the corresponding instance (web-01, etc.)
+- IMPORTANT point: 
+  - we created these 4 instances with a dynamic "for_each" construct
+  - unfortunately terraform does not allow "looping" import blocks.  
+  - We must create individual import blocks for each one of the 4 instances.
+    - What if we have 1000 instances ?   We could generate the 1000 import blocks with a script that interrogates AWS, gets the IDs and meta-data (e.g. tags) from the instances.
+- Run terraform plan and terraform apply
+- Updated state list - now includes the 4 instances 
+```
+data.aws_ami.ubuntu_24_04_x86
+data.aws_subnets.def_vpc_subnets
+data.aws_vpc.def_vpc
+aws_instance.example["app-01"]
+aws_instance.example["app-02"]
+aws_instance.example["web-01"]
+aws_instance.example["web-02"]
+aws_instance.example_1
+aws_security_group.sec_web
+```
 
+## Test the outputs
+- copy the outputs.tf file from lab 6 to lab 9a
+- run terraform apply again - you should see the outputs
+
+## You can remove the import blocks
+- Once the infrastructure is safely in the state file you can remove the import block
+## Clean up
+Please run terraform destroy to remove the infrastructure
