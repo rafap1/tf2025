@@ -41,3 +41,27 @@
 - Try to create your own `for` examples for outputs.
 - Try some output with splat [*]
 - Try commands with the terraform console as in 07a.
+
+## Bonus assignment
+- Look again at the aws_subnets definition (link above).  Specifically check the example provided (below from version 5.99.1 of provider).   You see that they create a set of instances (VMS) using "for_each".  In our lab we use "count".
+- Your assigment 1:  create one instance in each subnet using for_each
+- Your assignment 2 (more difficult?) : create num_vm instances distributed into az)count subnets.  You may notice that for taht case it may be simpler to use count and the "element" function.
+```
+data "aws_subnets" "private" {
+  filter {
+    name   = "vpc-id"
+    values = [var.vpc_id]
+  }
+
+  tags = {
+    Tier = "Private"
+  }
+}
+
+resource "aws_instance" "app" {
+  for_each      = toset(data.aws_subnets.private.ids)
+  ami           = var.ami
+  instance_type = "t2.micro"
+  subnet_id     = each.value
+}
+```
