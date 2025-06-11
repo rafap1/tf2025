@@ -23,14 +23,6 @@ resource "aws_security_group" "sec_web" {
     cidr_blocks = var.sec_allowed_external
   }
 
-  ingress {
-    description = "Allow TCP for special port from specific addresses"
-    from_port   = var.special_port
-    to_port     = var.special_port
-    protocol    = "tcp"
-    cidr_blocks = var.sec_allowed_external
-  }
-
   egress {
     from_port   = 0
     to_port     = 0
