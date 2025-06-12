@@ -111,3 +111,8 @@ ScannedCount: 3
 
 ```
 
+## Using HCL backend configuration file
+
+run init commands as follows:
+```
+terraform init -backend=true -backend-config=../backend.hcl
