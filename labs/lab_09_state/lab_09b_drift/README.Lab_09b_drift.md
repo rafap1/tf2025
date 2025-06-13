@@ -12,6 +12,8 @@ Some changes to align with course environmant:
 
 - region -> eu-south-2
 
+- change the instance type from t2.micro to t3.micro
+
 - Command to generate ssh key pair  (you can keep the example.com email).  This command must be run in the same directory you have the terraform files
 
 ssh-keygen -t rsa -C "your_email@example.com" -f ./key
