@@ -36,12 +36,12 @@
 
 # import {
 #   to = aws_security_group.sec_web
-#   id = "sg-094ed7810d9c09a32"
+#   id = "sg-xxxxxxx"
 
 # }
-# ### ======================================= end STEP 1 (security group) ==================================
+# # ### ======================================= end STEP 1 (security group) ==================================
 
-# ### ======================================= start STEP 2 (single instance)==================================
+# # ### ======================================= start STEP 2 (single instance)==================================
 # resource "aws_instance" "example_1" {
 #   ami                    = data.aws_ami.ubuntu_24_04_x86.id
 #   instance_type          = "t3.nano"
@@ -59,7 +59,7 @@
 
 # import {
 #   to = aws_instance.example_1
-#   id = "i-xxxxxxx"
+#   id = "i-aaaaaa"
 # }
 # ### ======================================= end STEP 2 (single instance ) ==================================
 
@@ -84,22 +84,24 @@
 #   }
 # }
 
-# import {
-#   to = aws_instance.example["web-01"]
-#   id = "i-xxxxxxxx"
+
+
+### Define the mapping as a local value
+# locals {
+#   instance_mappings = {
+#     "web-01" = "i-xxxxx"
+#     "web-02" = "i-yyyyy"
+#     "app-01" = "i-zzzzz"
+#     "app-02" = "i-zzzzz"
+#   }
 # }
 
+## Single import block with for_each
 # import {
-#   to = aws_instance.example["web-02"]
-#   id = "i-xxxxxxxxx"
-# }
-# import {
-#   to = aws_instance.example["app-01"]
-#   id = "i-xxxxxxxxxx"
-# }
-# import {
-#   to = aws_instance.example["app-02"]
-#   id = "i-xxxxxxxxxx"
+#   for_each = local.instance_mappings
+  
+#   to = aws_instance.example[each.key]
+#   id = each.value
 # }
 
 # ### ============================= end  STEP 3 (group of instances - for_each)==================================
