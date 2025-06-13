@@ -123,10 +123,30 @@ aws_security_group.sec_web
 - Uncomment the code between the "start STEP-3" and "end STEP-3"
 - In each of the import blocks change "i-xxxxxx" with the instance ID of the corresponding instance (web-01, etc.)
 - IMPORTANT point: 
-  - we created these 4 instances with a dynamic "for_each" construct
-  - unfortunately terraform does not allow "looping" import blocks.  
-  - We must create individual import blocks for each one of the 4 instances.
-    - What if we have 1000 instances ?   We could generate the 1000 import blocks with a script that interrogates AWS, gets the IDs and meta-data (e.g. tags) from the instances.
+  - we created these 4 instances in lab_06 with a dynamic "for_each" construct
+    - Of course in the real world the instances will not have been created with terraform. We will have to "reverse-engineer" the structure.  In this lab we assume we did that and we use the same for_each to define the resources.
+  - For the import blocks, we can also use a for_each construct
+    - We define a local variable that contains the instance IDs we retrieved with the aws cli command and we loop through it with a for_each.
+    - You have to substitute the "i-xxxxx" etc for the specific IDs of your instances
+```
+locals {
+  instance_mappings = {
+    "web-01" = "i-xxxxx"
+    "web-02" = "i-yyyyy"
+    "app-01" = "i-zzzzz"
+    "app-02" = "i-zzzzz"
+  }
+}
+
+# Single import block with for_each
+import {
+  for_each = local.instance_mappings
+  
+  to = aws_instance.example[each.key]
+  id = each.value
+}
+```
+
 - Run terraform plan and terraform apply
 - Updated state list - now includes the 4 instances 
 ```
