@@ -2,11 +2,15 @@
 ## Create a VPC using module
 module "my_web_vpc" { ## We could call this "pepe" :-)
   #  source            = "../modules/aws-web-vpc"
-  source = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-vpc?ref=v1.0.2"
+  # source = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-vpc?ref=v1.0.2"
+  source = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-vpc"
 
-  vpc_name          = var.project
-  subnet_name       = "${var.project}-subnet"
-  vpc_cidr_block    = var.vpc_cidr
+  vpc_name       = var.project
+  subnet_name    = "${var.project}-subnet"
+  vpc_cidr_block = var.vpc_cidr
+  # Use first availablity zone name from list retrieved in data source
+  aws_az         = data.aws_availability_zones.available.names[0]
+  # aws_az = "eu-south-2a"
   subnet_cidr_block = var.subnet_cidr
 
 }
@@ -16,7 +20,7 @@ module "web1" {
   #  source            = "../modules/aws-web-server-instance"
   # source            = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-server-instance"
   # Note below: "ref" in lower case
-  source = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-server-instance?ref=v1.0.2"
+  source = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-server-instance?ref=v1.0.3"
 
   os                = var.server_os
   ec2_instance_type = var.ec2_instance_type

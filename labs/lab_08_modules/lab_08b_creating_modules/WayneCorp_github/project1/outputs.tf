@@ -36,3 +36,7 @@ output "web2_public_ip" {
   description = "Public IP of server 2"
   value       = module.web2.instance_public_ip
 }
+
+output "azs" {
+  value = data.aws_availability_zones.available
+}

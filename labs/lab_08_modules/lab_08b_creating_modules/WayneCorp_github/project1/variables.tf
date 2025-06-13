@@ -14,7 +14,7 @@ variable "project" {
 }
 
 variable "lab_number" {
-  type    = string
+  type = string
 }
 
 ## AWS Specific parameters
