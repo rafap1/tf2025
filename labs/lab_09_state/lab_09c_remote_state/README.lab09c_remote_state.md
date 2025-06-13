@@ -34,6 +34,7 @@ ACCOUNT_NUMBER=761528455679
 REGION=eu-south-2
 PROFILE=sso-student
 aws s3 ls s3://terraform-course-$ACCOUNT_NUMBER-state --profile $PROFILE --region $REGION --recursive
+
 2025-06-11 23:23:22        181 mdr/example-01/terraform.tfstate
 2025-06-11 23:45:04      15647 mdr/example-02/terraform.tfstate
 ```
