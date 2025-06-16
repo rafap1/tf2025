@@ -25,8 +25,8 @@ variable "ec2_instances" {
   type = map(object({
     instance_type = string
     disk_size_gb  = number
-    disk_type = string
-    cost_center = string
+    disk_type     = string
+    cost_center   = string
   }))
 
   validation {

@@ -16,19 +16,6 @@ Terraform - S3 Backend
 - NOTE:  Ideally projects and environments could have dedicated state buckets.  The bucket  and dynamoDB table names we use in these labs are not too realistic (too "static"), but we chose to make it that way to simplify permission management of the students.   We put the values in local variables to facilitate changing if desired.
 
 
-Example:
-
-For app  "example-01"
-    bucket         = "acme02-terraform-state-975022449833-dev"           
-    dynamodb_table = "acme02-terraform-state-locks-dev"
-    key            = "acme02/example-01/terraform.tfstate"  ## Note key is application specific
-
-For app  "example-02"
-    bucket         = "acme02-terraform-state-975022449833-dev"           
-    dynamodb_table = "acme02-terraform-state-locks-dev"
-    key            = "acme02/example-02/terraform.tfstate"  ## Note key is application specific
-
-
 
 ## How to create the state bucket and dynamoDB lock table
 - terraform init, validate, plan, apply

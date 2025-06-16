@@ -41,7 +41,7 @@ aws s3 ls s3://terraform-course-$ACCOUNT_NUMBER-state --profile $PROFILE --regio
 - Example exploring the object versions - we use  `aws s3api` instead of `aws s3`
 - We enable versioning when creating the bucket to make sure we preserve prior versions (you can use lifecycle policies in the bucket to manage the number of versions preserved, and how older versions are deleted)
 ```
-ACCOUNT_NUMBER=761528455679
+ACCOUNT_NUMBER=123456789012
 REGION=eu-south-2
 PROFILE=sso-student
 aws s3api list-object-versions \
@@ -52,7 +52,7 @@ aws s3api list-object-versions \
   --region $REGION \
   --output table
 
-```
+
 -------------------------------------------------------------------------------------------------------------------
 |                                               ListObjectVersions                                                |
 +---------+------------------------------------+-----------------------------+------------------------------------+
@@ -64,7 +64,7 @@ aws s3api list-object-versions \
 |  False  |  mdr/example-01/terraform.tfstate  |  2025-06-11T21:18:22+00:00  |  GXUvunp4ZguYwTKyopI0NgPUedk7mzC.  |
 |  False  |  mdr/example-01/terraform.tfstate  |  2025-06-11T20:31:44+00:00  |  _Ya6VFqIfNZmibCILW8oV3U9R4ZfO_Q3  |
 +---------+------------------------------------+-----------------------------+------------------------------------+
-
+```
 ## Exploring the Dynamodb table with the CLI (scan)
 
 - Scan of items in state table when there are no locks

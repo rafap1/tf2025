@@ -3,9 +3,10 @@
 
 ## Purpose of this lab
 - Explore the behavior of import state with two cases
+    - Importing a security group
     - Importing a single instance
     - Importing a group of instances created with for_each
-    - Importing a security group
+
 
 ## How to perform the lab
 ### First Create Infrastructure
@@ -49,7 +50,7 @@ PROFILE=sso-student
 aws ec2 describe-instances \
   --region $REGION \
   --profile $PROFILE \
-  --filters "Name=tag:Name,Values=*lab06*" \
+  --filters "Name=tag:Name,Values=*lab06*" "Name=instance-state-name,Values=running" \
   --query 'Reservations[].Instances[].[Tags[?Key==`Name`].Value | [0], InstanceId]' \
   --output table
 ```
