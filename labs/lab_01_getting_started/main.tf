@@ -1,10 +1,10 @@
 terraform {
-  required_version = "~> 1.12.0"
+  required_version = "~> 1.13.0"
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~>5.0"
+      version = "~>6.0"
     }
   }
 }
@@ -48,8 +48,8 @@ variable "instance_type" {
 ## Since we do not specify subnet AWS 
 ## will select a public subnet in the default VPC
 resource "aws_instance" "server" {
-  ami                         = data.aws_ami.ubuntu_24_04_x86.id
-  instance_type               = var.instance_type
+  ami           = data.aws_ami.ubuntu_24_04_x86.id
+  instance_type = var.instance_type
   tags = {
     Name = "web-server"
   }
