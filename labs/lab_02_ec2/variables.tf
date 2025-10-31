@@ -1,36 +1,43 @@
 ## AWS Specific parameters
 
 variable "region" {
-  type    = string
-  default = "eu-west-1"
+  description = "AWS Region"
+  type        = string
 }
 
 variable "profile" {
-  type = string
+  description = "AWS Profile for authentication of Terraform"
+  type        = string
 }
 
-## Environment and Project
+## Company, Environment and Project
 variable "company" {
   type        = string
-  description = "company name - will be used in tags"
-  default     = "lumon"
+  description = "Company name - will be used in tags"
 }
+
 variable "environment" {
   type        = string
-  description = "e.g. test dev prod"
-  default     = "dev"
+  description = "Environment - e.g. dev, stage, prod"
 }
 
 variable "project" {
-  type = string
+  type        = string
+  description = "Project Name - will be used to name resources"
+}
+
+variable "cost_center" {
+  type        = string
+  description = "Cost Center"
 }
 
 variable "lab_number" {
-  type    = string
-  default = "lab02"
+  type        = string
+  description = "Lab Number - used to name resources"
 }
 
-## VPC parameters
+## Lab specific variables
+
 variable "vpc_cidr" {
   type    = string
   default = "10.99.0.0/16"
@@ -43,8 +50,7 @@ variable "vpc_cidr" {
 ## EC2 Instance Parameters
 
 variable "instance_type" {
-  type    = string
-  default = "t3.micro"
+  type = string
 }
 
 variable "my_ami" {
@@ -63,7 +69,6 @@ variable "my_ami" {
 variable "sec_allowed_external" {
   description = "CIDRs from which access is allowed"
   type        = list(string)
-  default     = ["0.0.0.0/0"]
 }
 
 ## ECS Parameters

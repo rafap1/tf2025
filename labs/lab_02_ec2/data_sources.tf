@@ -14,7 +14,7 @@ data "aws_subnets" "def_vpc_subnets" {
 }
 
 
-## Data Source - this is used to get the latest Ubuntu AMI
+## Data Source - this is used to get the latest Ubuntu 24.04 AMI
 ## It is equivalent to a query to aws with a filter:
 ## "Give me the ami-id of the latest ubuntu 24.04 image for X86 architecture"
 data "aws_ami" "ubuntu_24_04_x86" {

@@ -1,4 +1,13 @@
-profile      = "sso-student"
-project      = "mdr"
-special_port = "6666"
-# sec_allowed_external = [ "2.0.0.0/8", "8.0.0.0/8" ]
+region      = "eu-south-2"
+profile     = "sso-student"
+lab_number  = "02"
+company     = "Lumon"
+project     = "mdr"
+cost_center = "232323"
+environment = "dev"
+
+## Lab specific variables
+
+instance_type        = "t3.micro"
+special_port         = "6666"
+sec_allowed_external = ["0.0.0.0/0"]
