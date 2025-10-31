@@ -1,42 +1,48 @@
 ## AWS Specific parameters
 
 variable "region" {
-  type    = string
-  default = "eu-west-1"
+  description = "AWS Region"
+  type        = string
 }
 
 variable "profile" {
-  type    = string
-  default = "sso-student"
+  description = "AWS Profile for authentication of Terraform"
+  type        = string
 }
 
-
-variable "lab_number" {
-  type    = string
-  default = "lab03"
-}
-
-## specific for "count"
-variable "num_instances" {
-  type    = number
-  default = 2
-}
-## Environment and Project
+## Company, Environment and Project
 variable "company" {
   type        = string
-  description = "company name - will be used in tags"
-  default     = "lumon"
+  description = "Company name - will be used in tags"
 }
+
 variable "environment" {
   type        = string
-  description = "e.g. test dev prod"
-  default     = "dev"
+  description = "Environment - e.g. dev, stage, prod"
 }
 
 variable "project" {
-  type    = string
-  default = "mdr-03"
+  type        = string
+  description = "Project Name - will be used to name resources"
 }
+
+variable "cost_center" {
+  type        = string
+  description = "Cost Center"
+}
+
+variable "lab_number" {
+  type        = string
+  description = "Lab Number - used to name resources"
+}
+
+## Lab specific variables
+
+variable "num_instances" {
+  type    = number
+  default = 0
+}
+
 
 ## VPC parameters
 variable "vpc_cidr" {
@@ -67,14 +73,12 @@ variable "my_ami" {
 variable "sec_allowed_external" {
   description = "CIDRs from which access is allowed"
   type        = list(string)
-  default     = ["0.0.0.0/0"]
-  # default = ["2.37.1.5/32"]
+
 }
 
 ## ECS Parameters
 variable "special_port" {
   type        = string
   description = "TCP port where Foobar application listens"
-
 }
 
