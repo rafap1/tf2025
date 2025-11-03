@@ -67,7 +67,10 @@ locals {
       ancelotti = "R.Madrid"
       simeone = "Atletico"
     },
-    { joaquin = "Betis"}
+    { 
+      joaquin = "Betis" 
+      antony = "Betis"
+    }
   )
 }
 
