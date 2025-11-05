@@ -43,12 +43,28 @@ terraform state show 'aws_instance.server[1]'
 (note single quotes)
 
 - You will get a lot of output about the second instance [1]
+- With `terraform state show` we cannot get individual parameters such as the ami of instance [1]
 
+```
+terraform state show 'aws_instance.server[1].ami'
+
+Error parsing instance address: aws_instance.server[1].ami
+
+This command requires that the address references one specific instance.
+To view the available instances, use "terraform state list". Please modify
+the address to reference a specific instance.
+```
+- to get more info we can use `terraform console`
 
 ## Using Terraform console
+- Try the following command to extract specific info (ami) from a given instance [1]
+```
+echo 'aws_instance.server[1].ami' | terraform console
 
-Explore interrogating state - compare difference between two sets  ( [*] is referred to as "splat")
-Note that aws_instance.server is now an array with num_instances elements
+"ami-0682c282a19c84de9"
+```
+- Explore interrogating state - compare difference between two sets  ( [*] is referred to as "splat")
+- Note that aws_instance.server is now an array with `num_instances` elements
 
 echo "length(aws_instance.server)" | terraform console
 
@@ -74,8 +90,9 @@ echo var.num_instances | terraform console
 Take a look at the output blocks... what has changed vs lab02
 Explore the definition of output `public_ip` and the command `terraform output public_ip`
 ## Change number of instances
-- Increment num_instances by one, perhaps by adding the variable with value 4 to file terraform.tfvars
+- Increment `num_instances by one`, perhaps by adding the variable with value 4 to file terraform.tfvars
 - What happens?
+- Now decrement by one - check `terraform plan`.  which machine will be destroyed?
 
 ## Add a validation to the num_instances variable
 - for example >0 and <=4
