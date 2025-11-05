@@ -38,9 +38,12 @@ aws_security_group.sec_web
 - Note the 3 aws_instance resources indexed from 0 - 2 (count=0, count=1, count=2)
 - Try exploring the state of one of the instances created.  Single quotes are important!
 
-echo 'aws_instance.server[0]' | terraform console
+terraform state show 'aws_instance.server[1]'
 
-- You will get a lot of output about the first instance (0)
+(note single quotes)
+
+- You will get a lot of output about the second instance [1]
+
 
 ## Using Terraform console
 
@@ -84,6 +87,3 @@ explore `terraform plan -destroy`  (speculative command - we are asking Terrafor
 then `terraform destroy -auto-approve`
 
 
-
-
-lab2 y lab3
