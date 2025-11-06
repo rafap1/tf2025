@@ -2,7 +2,7 @@
 
 variable "region" {
   type    = string
-  default = "eu-west-1"
+  default = "eu-south-2"
 }
 
 variable "profile" {
@@ -15,22 +15,20 @@ variable "profile" {
 variable "company" {
   type        = string
   description = "company name - will be used in tags"
-  default     = "lumon"
 }
 variable "environment" {
   type        = string
   description = "e.g. test dev prod"
-  default     = "dev"
 }
 
 variable "project" {
-  type    = string
-  default = "mdr"
+  type        = string
+  description = "Project name - used in tags and resource naming"
 }
 
 variable "lab_number" {
-  type    = string
-  default = "put-a-lab-number-here"
+  type        = string
+  description = "Lab number - used in tags and resource naming"
 }
 
 ## VPC and subnet parameters
@@ -47,8 +45,7 @@ variable "lab_number" {
 # }
 
 variable "num_vms" {
-  type    = number
-  default = 0
+  type = number
   validation {
     condition     = var.num_vms >= 0 && var.num_vms <= 5
     error_message = "Number of VMs must be between 0 and 5."
@@ -59,5 +56,4 @@ variable "instance_type" {
   type    = string
   default = "t3.nano"
 }
-
 

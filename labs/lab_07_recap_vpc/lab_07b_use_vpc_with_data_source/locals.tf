@@ -5,5 +5,5 @@ locals {
   az_id              = data.aws_availability_zones.available.zone_ids
   name_suffix        = "${var.project}-${var.environment}-${var.lab_number}"
   vpc_name_expresion = "${var.project}-${var.environment}"
-  subnet_prefix      = 8 # /24 subnets (16 + 8 = 24)
+  max_azs            = length(data.aws_subnets.private_subnets.ids)
 }
