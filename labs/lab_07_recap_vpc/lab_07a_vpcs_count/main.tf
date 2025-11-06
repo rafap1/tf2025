@@ -24,9 +24,9 @@ resource "aws_subnet" "public_subnet" {
   vpc_id            = aws_vpc.vpc1.id
   cidr_block        = cidrsubnet(var.vpc_cidr, local.subnet_prefix, 1 + count.index)
   availability_zone = data.aws_availability_zones.available.names[count.index]
-  tags              = { 
-    "tier" = "public", 
-    "Name" = "public-${local.name_suffix}-${count.index}" 
+  tags = {
+    "tier" = "public",
+    "Name" = "public-${local.name_suffix}-${count.index}"
   }
 
 }
@@ -37,10 +37,10 @@ resource "aws_subnet" "private_subnet" {
   cidr_block              = cidrsubnet(var.vpc_cidr, local.subnet_prefix, 11 + count.index)
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = false
-  tags                    = { 
-    "tier" = "private", 
-    "Name" = "private-${local.name_suffix}-${count.index}" 
-    }
+  tags = {
+    "tier" = "private",
+    "Name" = "private-${local.name_suffix}-${count.index}"
+  }
   timeouts {
     create = "5m"
     delete = "2m"
@@ -64,7 +64,7 @@ resource "aws_eip" "nat_ip" {
   count      = var.create_nat_gw ? var.az_count : 0
   domain     = "vpc"
   depends_on = [aws_internet_gateway.igw]
-  tags       = { "Name" = "eip-${count.index}" }
+  tags       = { "Name" = "eip-${count.index+1}" }
 }
 
 resource "aws_nat_gateway" "natgw" {
@@ -119,13 +119,13 @@ resource "aws_route_table_association" "priv" {
 }
 
 resource "aws_route_table" "db_subnet_rt" {
-  count = var.az_count
+  count  = var.az_count
   vpc_id = aws_vpc.vpc1.id
   tags   = { "Name" = "database-${count.index}" }
 }
 
 resource "aws_route_table_association" "db" {
-  count = var.az_count
+  count          = var.az_count
   subnet_id      = aws_subnet.db_subnet[count.index].id
   route_table_id = aws_route_table.db_subnet_rt[count.index].id
 }
