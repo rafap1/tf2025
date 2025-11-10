@@ -9,7 +9,7 @@ module "my_web_vpc" { ## We could call this "pepe" :-)
   subnet_name    = "${var.project}-subnet"
   vpc_cidr_block = var.vpc_cidr
   # Use first availablity zone name from list retrieved in data source
-  aws_az         = data.aws_availability_zones.available.names[0]
+  aws_az = data.aws_availability_zones.available.names[0]
   # aws_az = "eu-south-2a"
   subnet_cidr_block = var.subnet_cidr
 

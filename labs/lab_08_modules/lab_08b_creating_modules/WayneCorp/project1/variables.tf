@@ -24,7 +24,7 @@ variable "region" {
 }
 
 variable "profile" {
-  type = string
+  type    = string
   default = "sso-student"
 }
 

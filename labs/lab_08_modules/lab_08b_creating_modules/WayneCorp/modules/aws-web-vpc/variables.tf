@@ -3,6 +3,7 @@
 variable "vpc_name" {
   description = "Name of VPC to be created"
   type    = string
+  default = "borrame"
 }
 
 variable "vpc_cidr_block" {

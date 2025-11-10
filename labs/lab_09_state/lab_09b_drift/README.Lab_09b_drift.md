@@ -8,6 +8,7 @@ https://developer.hhicorp.com/terraform/tutorials/state/resource-drift
 - This lab creates infrastructure (EC2 Instance with a securith group)
 - We then generate drift: create (outside of Terraform, with AWS CLI) a second security group and apply it to the instance.
 - Then it uses `terraform plan -refresh-only` to detect
+
 Some changes to align with course environmant:
 
 - region -> eu-south-2

@@ -19,7 +19,7 @@ resource "aws_security_group" "sec_web" {
     protocol    = "tcp"
     cidr_blocks = var.sec_allowed_external
   }
- ingress {
+  ingress {
     description = "TCP Port 2222 from specific addresses"
     from_port   = 2222
     to_port     = 2222
@@ -42,13 +42,17 @@ resource "aws_security_group" "sec_web" {
 
 # import {
 #   to = aws_security_group.sec_web
-#   id = "sg-0e4d39c5fdbb28ae7"
-
+#   id = "sg-033ae1bcd0bc1b31c"
 # }
-# # ### ======================================= end STEP 1 (security group) ==================================
+# # # ### ======================================= end STEP 1 (security group) ==================================
 
+moved {
+  from = aws_instance.example_1
+  to = aws_instance.server_1
+}
 # # ### ======================================= start STEP 2 (single instance)==================================
-resource "aws_instance" "example_1" {
+resource "aws_instance" "server_1" {
+
   ami                    = data.aws_ami.ubuntu_24_04_x86.id
   instance_type          = "t3.nano"
   vpc_security_group_ids = [aws_security_group.sec_web.id]
@@ -63,15 +67,14 @@ resource "aws_instance" "example_1" {
   }
 }
 
-import {
-  to = aws_instance.example_1
-  id = "i-09697ca6bf75e6d3c"
+# import {
+#   to = aws_instance.example_1
+#   id = "i-08d8e16004eb28e32"
+#  }
+# # ### ======================================= end STEP 2 (single instance ) ==================================
 
-}
-# ### ======================================= end STEP 2 (single instance ) ==================================
 
-
-# ### ============================= start STEP 3 (group of instances - for_each)==================================
+# # ### ============================= start STEP 3 (group of instances - for_each)==================================
 
 resource "aws_instance" "example" {
   for_each = var.ec2_instances
@@ -86,20 +89,19 @@ resource "aws_instance" "example" {
   }
 
   tags = {
-    Name = "${each.key}-${local.name_suffix}"
+    Name        = "${each.key}-${local.name_suffix}"
     cost_center = each.value.cost_center
   }
 }
 
 
-
 # Define the mapping as a local value
 locals {
   instance_mappings = {
-    "web-01" = "i-0a45c28362fa2a715"
-    "web-02" = "i-09f1d3109cabd65d1"
-    "app-01" = "i-0f6da2b64000bd089"
-    "app-02" = "i-09666946f1a7ff7b5"
+    "web-01" = "i-088f448431f324808"
+    "web-02" = "i-0988996d2f2994b4d"
+    "app-01" = "i-04925dac2f27d5e85"
+    "app-02" = "i-073adcc03942a830c"
   }
 }
 
@@ -111,4 +113,4 @@ import {
   id = each.value
 }
 
-# ### ============================= end  STEP 3 (group of instances - for_each)==================================
+# # ### ============================= end  STEP 3 (group of instances - for_each)==================================

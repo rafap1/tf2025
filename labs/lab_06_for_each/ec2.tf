@@ -12,7 +12,7 @@ resource "aws_instance" "example" {
   }
 
   tags = {
-    Name = "${each.key}-${local.name_suffix}"
+    Name        = "${each.key}-${local.name_suffix}"
     cost_center = each.value.cost_center
   }
 }
