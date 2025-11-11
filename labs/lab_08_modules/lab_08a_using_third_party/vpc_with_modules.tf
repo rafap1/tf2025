@@ -13,20 +13,21 @@ module "vpc_one" {
 
 }
 
-module "vpc_dos" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "5.20.0" ## Best practice to specify version
+##
+## this code commented initially  - it will be uncommented during Lab 08a
+##
+# module "vpc_dos" {
+#   source  = "terraform-aws-modules/vpc/aws"
+#   version = "5.20.0" ## Best practice to specify version - we can make module calls with different versions
 
-  name               = "vpc-${local.name_suffix}-2"
-  cidr               = "192.168.0.0/16"
-  enable_nat_gateway = false
-  single_nat_gateway = true
+#   name               = "vpc-${local.name_suffix}-2"
+#   cidr               = "192.168.0.0/16"
+#   enable_nat_gateway = false
+#   single_nat_gateway = true
 
-  azs            = ["${var.region}a", "${var.region}b", "${var.region}c"]
-  public_subnets = ["192.168.1.0/24", "192.168.2.0/24", "192.168.3.0/24"]
-
-
-}
+#   azs            = ["${var.region}a", "${var.region}b", "${var.region}c"]
+#   public_subnets = ["192.168.1.0/24", "192.168.2.0/24", "192.168.3.0/24"]
+# }
 
 
 
