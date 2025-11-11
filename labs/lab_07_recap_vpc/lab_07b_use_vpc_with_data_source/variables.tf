@@ -1,13 +1,13 @@
 ## AWS Specific parameters
 
 variable "region" {
-  type    = string
-  default = "eu-south-2"
+  description = "AWS Region"
+  type        = string
 }
 
 variable "profile" {
-  type    = string
-  default = "sso-student"
+  description = "AWS CLI profile"
+  type        = string
 }
 
 ## Environment and Project
@@ -18,7 +18,7 @@ variable "company" {
 }
 variable "environment" {
   type        = string
-  description = "e.g. test dev prod"
+  description = "e.g. test dev prod - used in tags and resource naming"
 }
 
 variable "project" {
@@ -45,7 +45,8 @@ variable "lab_number" {
 # }
 
 variable "num_vms" {
-  type = number
+  description = "Number of VMs to deploy"
+  type        = number
   validation {
     condition     = var.num_vms >= 0 && var.num_vms <= 5
     error_message = "Number of VMs must be between 0 and 5."
@@ -53,7 +54,7 @@ variable "num_vms" {
 }
 
 variable "instance_type" {
-  type    = string
-  default = "t3.nano"
+  description = "EC2 instance type"
+  type        = string
 }
 
