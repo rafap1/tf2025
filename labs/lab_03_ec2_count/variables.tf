@@ -39,6 +39,7 @@ variable "lab_number" {
 ## Lab specific variables
 
 variable "num_instances" {
+  description = "Number of EC2 instances to create"
   type    = number
   default = 0
 }
@@ -46,6 +47,7 @@ variable "num_instances" {
 
 ## VPC parameters
 variable "vpc_cidr" {
+  description = "CIDR for VPC"
   type    = string
   default = "10.99.0.0/16"
   validation {
@@ -57,6 +59,7 @@ variable "vpc_cidr" {
 ## EC2 Instance Parameters
 
 variable "instance_type" {
+  
   type    = string
   default = "t3.micro"
 }
