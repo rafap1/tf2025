@@ -40,16 +40,16 @@ variable "lab_number" {
 
 variable "num_instances" {
   description = "Number of EC2 instances to create"
-  type    = number
-  default = 0
+  type        = number
+  default     = 0
 }
 
 
 ## VPC parameters
 variable "vpc_cidr" {
   description = "CIDR for VPC"
-  type    = string
-  default = "10.99.0.0/16"
+  type        = string
+  default     = "10.99.0.0/16"
   validation {
     condition     = can(cidrnetmask(var.vpc_cidr)) ## Needs work
     error_message = "Invalid CIDR for VPC."
@@ -59,7 +59,7 @@ variable "vpc_cidr" {
 ## EC2 Instance Parameters
 
 variable "instance_type" {
-  
+
   type    = string
   default = "t3.micro"
 }
