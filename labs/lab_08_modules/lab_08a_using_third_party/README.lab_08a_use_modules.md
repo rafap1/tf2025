@@ -28,8 +28,8 @@ module "vpc_one" {
 }
 ```
 
-Think of this configuration as "calling" a module function that is available at: "terraform-aws-modules/vpc/aws"
-We are calling the function with 7 parameters, named:
+- Think of this configuration as "calling" a module function that is available at: "terraform-aws-modules/vpc/aws"
+- We are calling the function with 7 parameters, named:
   name   
   cidr 
   enable_nat_gateway
@@ -38,12 +38,12 @@ We are calling the function with 7 parameters, named:
   public_subnets  
   private_subnets  
 
-The result of calling this is a "construct"  that we are calling "vpc_one"  
+- The result of calling this is a "construct"  that we are calling "vpc_one"  
 
-IMPORTANT: "vpc_one"  is an arbitrary name we have chosen; terwe could also call it "primera_vpc" (or "foobar")
+- IMPORTANT: "vpc_one"  is an arbitrary name we have chosen; terwe could also call it "primera_vpc" (or "foobar")
 
-The "module call" has created a number of resources as we expected:  vpc, subnets, internet gateway etc...
-We can see them if we run terraform state list.  The names are somewhat strange and new to us, but underneath they are really resources.
+- The "module call" has created a number of resources as we expected:  vpc, subnets, internet gateway etc. We can see them if we run terraform state list.  The names are somewhat strange and new to us, but underneath they are really resources.
+
 
 ```
 % terraform state list
@@ -72,15 +72,15 @@ module.vpc_one.aws_subnet.public[1]
 module.vpc_one.aws_subnet.public[2]
 module.vpc_one.aws_vpc.this[0]
 ```
-So far we have seen how to call the module with "input" variables.
+- So far we have seen how to call the module with "input" variables.
 
-The modules have also "output" variables - 
-The official VPC module has 100+ possible outputs but not all are available (depending on our input values)
+- The modules have also "output" variables - 
+- The official VPC module has 100+ possible outputs but not all are available (depending on our input values)
 
 ## Using the result of the module call
 
-We use some of those resources when creating an ec2 instance (file ec2.tf)
-Below we have a resource with `count`
+- We use some of those resources when creating an ec2 instance (file ec2.tf)
+- Below we have a resource with `count`
 
 - We will create as many virtual machines as public subnets.
 - The public subnets created by the "vpc_one" module call are available to us through the `outputs` of the module
@@ -116,7 +116,7 @@ resource "aws_instance" "server_priv" {
 
 
 ### Calling the module again to create a 2nd VPC
-- Now uncomment the code in the vpc_with_modules.tf file
+- In our code we also have a second "call" to the module 
 
 ```
 module "vpc_two" {
