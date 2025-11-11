@@ -8,6 +8,6 @@ variable "profile" {
   default = "sso-student"
 }
 
-variable nombre_del_bucket {
+variable "nombre_del_bucket" {
   type = string
 }

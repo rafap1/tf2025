@@ -1,7 +1,7 @@
 
 ## Note we use the account ID to make sure the buckets are unique worldwide
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "${var.bucket_name}"
+  bucket = var.bucket_name
 
 }
 

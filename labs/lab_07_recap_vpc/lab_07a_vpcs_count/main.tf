@@ -64,7 +64,7 @@ resource "aws_eip" "nat_ip" {
   count      = var.create_nat_gw ? var.az_count : 0
   domain     = "vpc"
   depends_on = [aws_internet_gateway.igw]
-  tags       = { "Name" = "eip-${count.index+1}" }
+  tags       = { "Name" = "eip-${count.index + 1}" }
 }
 
 resource "aws_nat_gateway" "natgw" {

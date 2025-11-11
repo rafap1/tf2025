@@ -33,8 +33,8 @@ variable "more_users" {
     },
     martin = {
       "favorite food" = "salmorejo cordobés"
-      age = 33
-      is_admin = false
+      age             = 33
+      is_admin        = false
     }
   }
 }
@@ -61,15 +61,15 @@ locals {
   prueba_merge = merge(
     {
       lewandowski = "Barcelona"
-      williams = "Athletic"
+      williams    = "Athletic"
     },
     {
       ancelotti = "R.Madrid"
-      simeone = "Atletico"
+      simeone   = "Atletico"
     },
-    { 
-      joaquin = "Betis" 
-      antony = "Betis"
+    {
+      joaquin = "Betis"
+      antony  = "Betis"
     }
   )
 }

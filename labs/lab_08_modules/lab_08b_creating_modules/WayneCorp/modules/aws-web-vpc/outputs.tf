@@ -15,10 +15,10 @@ output "subnet_cidr" {
 
 output "subnet_az" {
   description = "Availability Zone of created subnet"
-  value = aws_subnet.web_server_subnet.availability_zone
+  value       = aws_subnet.web_server_subnet.availability_zone
 }
 
 output "web_sec_group_id" {
   description = "Id of security group created in VPC"
-  value = aws_security_group.web_server_sg_name.id
+  value       = aws_security_group.web_server_sg_name.id
 }

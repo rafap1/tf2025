@@ -1,5 +1,5 @@
 lab_number    = "07b"
-environment = "dev"
+environment   = "dev"
 region        = "eu-south-2"
 project       = "mdr"
 company       = "Lumon"

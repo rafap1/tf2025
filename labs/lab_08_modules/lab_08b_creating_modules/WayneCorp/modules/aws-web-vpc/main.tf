@@ -41,7 +41,7 @@ resource "aws_route_table" "web_server_rt" {
   }
 
   tags = {
-    Name = "${var.vpc_name}-${var.rt_name}"  }
+  Name = "${var.vpc_name}-${var.rt_name}" }
 }
 
 resource "aws_route_table_association" "web_server_rt_association" {

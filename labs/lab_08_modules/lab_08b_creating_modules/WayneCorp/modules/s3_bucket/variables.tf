@@ -1,6 +1,6 @@
 # Required variable
-variable bucket_name {
-  type = string
+variable "bucket_name" {
+  type        = string
   description = "Bucket name - must be globally unique"
 }
 

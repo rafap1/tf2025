@@ -6,7 +6,7 @@ variable "region" {
 }
 
 variable "profile" {
-  type    = string
+  type = string
 }
 
 ## Environment and Project
@@ -22,11 +22,11 @@ variable "environment" {
 }
 
 variable "project" {
-  type    = string
+  type = string
 }
 
-variable "lab_number"{
-  type = string 
+variable "lab_number" {
+  type    = string
   default = "lab02"
 }
 
@@ -35,7 +35,7 @@ variable "vpc_cidr" {
   type    = string
   default = "10.99.0.0/16"
   validation {
-    condition     = can(cidrnetmask(var.vpc_cidr)) 
+    condition     = can(cidrnetmask(var.vpc_cidr))
     error_message = "Invalid CIDR for VPC."
   }
 }
@@ -68,7 +68,7 @@ variable "sec_allowed_external" {
 
 ## ECS Parameters
 variable "special_port" {
-  type = string
+  type        = string
   description = "TCP port where Foobar application listens"
 }
 
