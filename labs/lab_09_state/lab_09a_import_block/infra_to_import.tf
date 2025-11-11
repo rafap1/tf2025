@@ -48,7 +48,7 @@ resource "aws_security_group" "sec_web" {
 
 moved {
   from = aws_instance.example_1
-  to = aws_instance.server_1
+  to   = aws_instance.server_1
 }
 # # ### ======================================= start STEP 2 (single instance)==================================
 resource "aws_instance" "server_1" {

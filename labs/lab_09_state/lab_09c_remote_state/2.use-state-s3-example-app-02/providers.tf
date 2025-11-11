@@ -8,15 +8,16 @@ terraform {
     }
   }
 
-  ## Note we cannot use variables here!
+# Note we cannot use variables here!
   backend "s3" {
-    bucket = "terraform-course-761528455679-state"  ## change the 12 digit number : your account number
+    bucket = "terraform-course-761528455679-state" ## change the 12 digit number : your account number
     ## Note key is application specific
-    key            = "mdr/example-02/terraform.tfstate"   ## key refers to the s3 "path" to the state file, not to dynamodb
-    dynamodb_table = "terraform-course-state-locks"
-    region         = "eu-south-2"
-    encrypt        = true
-    profile        = "sso-student"
+    key = "mdr/example-02/terraform.tfstate" ## key refers to the s3 "path" to the state file, not to dynamodb
+    # dynamodb_table = "terraform-course-state-locks"
+    use_lockfile = true
+    region       = "eu-south-2"
+    encrypt      = true
+    profile      = "sso-student"
   }
 }
 

@@ -1,5 +1,5 @@
 terraform {
-  required_version = "= 1.13.4"
+  required_version = "= 1.13.4" ## >= 1.11 needed for "use_lockfile"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -12,11 +12,12 @@ terraform {
     bucket = "terraform-course-761528455679-state"
     ## key refers to the s3 "path" to the state file, not to dynamodb
     ## Note key is application specific
-    key            = "mdr/example-01/terraform.tfstate"
-    dynamodb_table = "terraform-course-state-locks"
-    region         = "eu-south-2"
-    encrypt        = true
-    profile        = "sso-student"
+    key = "mdr/example-01/terraform.tfstate"
+    ## dynamodb_table = "terraform-course-state-locks" - no longer needed - kept for reference
+    use_lockfile = true
+    region       = "eu-south-2"
+    encrypt      = true
+    profile      = "sso-student"
   }
 }
 
@@ -25,7 +26,7 @@ terraform {
 #   bucket = "terraform-course-761528455679-state"
 #   ## Note key is application specific
 #   key            = "mdr/example-01/terraform.tfstate" ## key refers to the s3 "path" to the state file, not to dynamodb
-#   dynamodb_table = "terraform-course-state-locks"
+#.  use_lockfile   = true
 #   region         = "eu-south-2"
 #   encrypt        = true
 #   profile        = "sso-student"

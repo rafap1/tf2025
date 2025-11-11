@@ -38,15 +38,16 @@ resource "aws_s3_bucket_public_access_block" "block_public" {
   restrict_public_buckets = true
 }
 
-## DynamoDB table for locking state in S3
-resource "aws_dynamodb_table" "terraform_state_locks" {
-  name         = local.dynamodb_table_name
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "LockID"
+# ## DynamoDB table for locking state in S3
+# Not needed since Terraform version 1.11
+# resource "aws_dynamodb_table" "terraform_state_locks" {
+#   name         = local.dynamodb_table_name
+#   billing_mode = "PAY_PER_REQUEST"
+#   hash_key     = "LockID"
 
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-}
+#   attribute {
+#     name = "LockID"
+#     type = "S"
+#   }
+# }
 

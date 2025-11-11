@@ -1,4 +1,5 @@
 terraform {
+  # Terraform version hould be >= 1.11.0 for state file locking without DynamoDB
   required_version = "1.13.4"
 
   required_providers {

@@ -4,7 +4,7 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
+      source = "hashicorp/aws"
       # version = ">= 3.24.1"
       version = ">= 4.13"
     }
@@ -14,7 +14,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region
+  region  = var.region
   profile = "cta"
 }
 
@@ -40,9 +40,9 @@ resource "aws_key_pair" "deployer" {
 }
 
 resource "aws_instance" "example" {
-  ami                    = data.aws_ami.ubuntu.id
-  key_name               = aws_key_pair.deployer.key_name
-  instance_type          = "t2.micro"
+  ami           = data.aws_ami.ubuntu.id
+  key_name      = aws_key_pair.deployer.key_name
+  instance_type = "t2.micro"
   # vpc_security_group_ids = [aws_security_group.sg_ssh.id]
   vpc_security_group_ids = [aws_security_group.sg_ssh.id, aws_security_group.sg_web.id]
   user_data              = <<-EOF
@@ -85,19 +85,19 @@ resource "aws_security_group" "sg_web" {
 }
 
 resource "aws_security_group_rule" "sg_web" {
-  type      = "ingress"
-  to_port   = "8080"
-  from_port = "8080"
-  protocol  = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
+  type              = "ingress"
+  to_port           = "8080"
+  from_port         = "8080"
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.sg_web.id
 }
 resource "aws_security_group_rule" "sg_web_80" {
-  type      = "ingress"
-  to_port   = "80"
-  from_port = "80"
-  protocol  = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-  description = "Hola Hola"
+  type              = "ingress"
+  to_port           = "80"
+  from_port         = "80"
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  description       = "Hola Hola"
   security_group_id = aws_security_group.sg_web.id
 }

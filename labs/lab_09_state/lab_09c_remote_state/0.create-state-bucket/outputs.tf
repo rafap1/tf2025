@@ -26,7 +26,8 @@ output "state_bucket_versioning" {
 #    value = aws_s3_bucket.terraform_state
 #}
 
-output "state_lock_dynamodb_name" {
-  description = "database to use as lock for state files"
-  value       = aws_dynamodb_table.terraform_state_locks.name
-}
+# DynamoDB lock not needed since terrform version 1.11
+# output "state_lock_dynamodb_name" {
+#   description = "database to use as lock for state files"
+#   value       = aws_dynamodb_table.terraform_state_locks.name
+# }
