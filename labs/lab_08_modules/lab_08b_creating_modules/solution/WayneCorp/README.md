@@ -1,3 +1,3 @@
-Lab Terraform Modules - Example 1
+Lab Terraform Modules - Creating Modules
 
 Version with module in local storage

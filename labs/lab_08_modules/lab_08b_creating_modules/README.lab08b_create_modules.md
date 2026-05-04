@@ -1,5 +1,11 @@
 ## Lab 08b Terraform Modules - Create Modules
 
+NOTE: You can view this markdown file rendered in Visual code with the following key combinations:
+
+	- Windows **Ctrl + Shift + V**
+	- Linux : **Ctrl + Shift + V**
+	- macOS:  **command  + shift +V**
+
 Example creating simple but complete modules
 - vpc
 - server instances

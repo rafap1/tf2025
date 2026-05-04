@@ -1,5 +1,11 @@
 # Lab 6 - for_each
 
+NOTE: You can view this markdown file rendered in Visual code with the following key combinations:
+
+	- Windows **Ctrl + Shift + V**
+	- Linux : **Ctrl + Shift + V**
+	- macOS:  **command  + shift +V**
+
 ## Purpose of lab
 - The main purpose of this lab is to explore the use 'map' variables and `for_each` to create multiple resources
 - This is much more powerful than `count` but entails a bit more complication

@@ -1,5 +1,11 @@
 ## Lab 07b - Creating VMs in vpc / subnets located with data sources
 
+NOTE: You can view this markdown file rendered in Visual code with the following key combinations:
+
+	- Windows **Ctrl + Shift + V**
+	- Linux : **Ctrl + Shift + V**
+	- macOS:  **command  + shift +V**
+
 ## Important reminders
 
 - This lab (07b) must be performed after 07a

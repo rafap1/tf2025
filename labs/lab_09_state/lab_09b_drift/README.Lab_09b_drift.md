@@ -1,5 +1,11 @@
 # Lab 09b - Drift
 
+NOTE: You can view this markdown file rendered in Visual code with the following key combinations:
+
+	- Windows **Ctrl + Shift + V**
+	- Linux : **Ctrl + Shift + V**
+	- macOS:  **command  + shift +V**
+
 - Note : this lab uses at the end 'terraform import' - There is a newer way to import with blocks as seen in Lab 09a 
 
 This lab follows HashiCorp's tutorial "Manage Resource Drift" at
