@@ -10,4 +10,3 @@ cost_center = "232323"
 special_port         = "6666"
 num_instances        = 3
 sec_allowed_external = ["0.0.0.0/0"]
-

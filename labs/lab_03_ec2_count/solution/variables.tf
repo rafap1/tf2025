@@ -84,4 +84,3 @@ variable "special_port" {
   type        = string
   description = "TCP port where Foobar application listens"
 }
-

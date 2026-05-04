@@ -1,5 +1,11 @@
 # Lab 05-01 - Expression Playground
 
+NOTE: You can view this markdown file rendered in Visual code with the following key combinations:
+
+	- Windows **Ctrl + Shift + V**
+	- Linux : **Ctrl + Shift + V**
+	- macOS:  **command  + shift +V**
+
 ## About this lab
 - In this lab we do not create any resources - we just play with Terraform functions
 - This lab has no `provider.tf` file we do not have a `provider` block 

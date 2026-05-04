@@ -1,8 +1,14 @@
 Testing S3 State
 
-This terraform code creates some resources and stores the state in a bucket we have created in "create-state-bucket"
+NOTE: You can view this markdown file rendered in Visual code with the following key combinations:
+
+	- Windows **Ctrl + Shift + V**
+	- Linux : **Ctrl + Shift + V**
+	- macOS:  **command  + shift +V**
 
 ## Convention for state bucket name and state file keys
+- This terraform code creates some resources and stores the state in a bucket we have created in "create-state-bucket"
+
 - We use the following convention to name the resources:
 
     - bucket `terraform-course-<acct-id>-state` e.g. `terraform-course-123456789012-state`

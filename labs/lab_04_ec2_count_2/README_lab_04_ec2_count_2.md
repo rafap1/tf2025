@@ -1,5 +1,11 @@
 # Lab 4 - EC2 using count - 2 
 
+NOTE: You can view this markdown file rendered in Visual code with the following key combinations:
+
+	- Windows **Ctrl + Shift + V**
+	- Linux : **Ctrl + Shift + V**
+	- macOS:  **command  + shift +V**
+
 ## Purpose of lab
 - The main purpose of this lab is to explore an undesirable behavior of using "count".  
 - In summary, `count` is very useful but sometimes it is better to use `for_each` seen later.
