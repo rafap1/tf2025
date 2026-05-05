@@ -50,10 +50,10 @@ We have the following files
 - Explore impact of changes in the behavior of  `terraform plan` :
     - In file `terraform.tfvars` change the value of variable `cost_center`. 
         - Run `terraform plan` -- what changes?
-        - Run `terraform apply` - observe the changes in the GCP Console
-    - In file `terraform.tfvars` change the value of variable `department`. Run `terraform plan`
+        - Run `terraform apply` - observe the changes in the AWS Console
+    - In file `terraform.tfvars` change the value of variable `project`. Run `terraform plan`
         - Run `terraform plan` -- what changes?  What is the difference with the previous change?  Why?
-        - Run `terraform apply` - observe the changes in the GCP Console
+        - Run `terraform apply` - observe the changes in the AWS Console
 - Explore assigning variables with different mechanisms (Env variables or in the CLI).  Examples
     - For example `terraform plan -var 'cost_center=foobar'`
 
