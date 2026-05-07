@@ -46,7 +46,7 @@ module "vpc_one" {
 
 - The result of calling this is a "construct"  that we are calling "vpc_one"  
 
-- IMPORTANT: "vpc_one"  is an arbitrary name we have chosen; terwe could also call it "primera_vpc" (or "foobar")
+- IMPORTANT: "vpc_one"  is an arbitrary name we have chosen; we could also call it "primera_vpc" (or "foobar")
 
 - The "module call" has created a number of resources as we expected:  vpc, subnets, internet gateway etc. We can see them if we run terraform state list.  The names are somewhat strange and new to us, but underneath they are really resources.
 
