@@ -13,6 +13,10 @@ NOTE: You can view this markdown file rendered in Visual code with the following
 - We also explore a little trick to create multiple instances with names
   - Note : here it is also better to use `for_each` but this is just to practice local variables, lists and the function length()
 
+## How to use this lab directory
+- This lab directory contains a directory `solution/` with a possible terraform deployment.  It also contains a directory `workdir/` that should be empty -- if it is not empty for some reason,  feel free to delete all the contents.
+- My suggestion is that you work in the directory `workdir` building your own solution. Of course you can consult and even copy files from the `solution/` directory.
+
 ## Preliminary
 - Explore code - starting with ec2.tf
 - Note the `count = local.ninstances` inside the definition of the aws_instance.
