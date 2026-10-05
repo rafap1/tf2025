@@ -6,6 +6,10 @@ NOTE: You can view this markdown file rendered in Visual code with the following
 	- Linux : **Ctrl + Shift + V**
 	- macOS:  **command  + shift +V**
 
+## How to use this lab directory
+- This lab directory contains a directory `solution/` with a possible terraform deployment.  It also contains a directory `workdir/` that should be empty -- if it is not empty for some reason,  feel free to delete all the contents.
+- My suggestion is that you work in the directory `workdir` building your own solution. Of course you can consult and even copy files from the `solution/` directory.
+
 ## Important reminder
 - Please remember to perform `terraform destroy` at the end of this lab.  Some resources are expensive (e.g. NAT GW)
     - NOTE: If you do also lab 07b,  you will have to `terraform destroy` lab 07b first.  You cannot destroy an AWS subnet if there is an EC2 instance (VM) associated with the subnet.
