@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(terraform apply*)",
+      "Bash(terraform plan*)",
+      "Bash(terraform init*)",
+      "Bash(terraform destroy*)",
+      "Bash(terraform import*)",
+      "Bash(terraform state*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "~/.claude/hooks/block-terraform.sh" }
+        ]
+      }
+    ]
+  },
+  "model": "sonnet",
+  "tui": "fullscreen"
+}

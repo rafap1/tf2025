@@ -1,4 +1,4 @@
+region       = "eu-west-1"
 profile      = "sso-student"
 project      = "mdr"
-special_port = "6666"
-# sec_allowed_external = [ "2.0.0.0/8", "8.0.0.0/8" ]
+vpc_cidr     = "10.20.0.0/16"
