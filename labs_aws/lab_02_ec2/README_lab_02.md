@@ -6,11 +6,17 @@ NOTE: You can view this markdown file rendered in Visual code with the following
 - Linux : **Ctrl + Shift + V**
 - macOS:  **command  + shift +V**
 
+
 ### Introduction
 - Main goals of this lab:
 
 - Explore terraform code and the usual conventions on file names
 - Practice again the terraform commands to deploy, explore and destroy infrastructure
+
+### 0. How to use this lab directory
+- This lab directory contains a directory `solution/` with a possible terraform deployment.  It also contains a directory `workdir/` that should be empty -- if it is not empty for some reason,  feel free to delete all the contents.
+- My suggestion is that you work in the directory `workdir` building your own solution. Of course you can consult and even copy files from the `solution/` directory.
+
 ### 1. Explore the terraform code and deploy the infrastructure
 #### 1.1 Explore Code
 We have the following files
