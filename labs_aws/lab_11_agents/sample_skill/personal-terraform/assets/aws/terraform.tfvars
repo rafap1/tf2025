@@ -1,4 +1,4 @@
-region       = "eu-west-1"
+region       = "eu-south-2"
 profile      = "sso-p1"
 company      = "lumon"
 project      = "mdr"

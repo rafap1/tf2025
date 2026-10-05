@@ -35,7 +35,6 @@ aws_security_group.sec_web
 ### Get a list of the instance Name and Instance IDs
 - We will use this list when we import the infrastructure
 - Run the following commands in your machine : the first will list the security group and its id.  The second the vms and their id.   We are filtering for those that have "lab06" in the Name tag (instances) or name (sg)
-- if for some reason you are using 'eu-west-1' as your region, change the REGION=xxxxxx below.
 - for the security group we run:
 ```
 REGION=eu-south-2

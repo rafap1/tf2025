@@ -1,5 +1,5 @@
 profile       = "sso-student"
-region        = "eu-west-1"
+region        = "eu-south-2"
 project       = "mdr"
 environment   = "dev"
 instance_type = "t3.nano"

@@ -23,7 +23,7 @@ aws sso login --profile sso-student
 - Deploy infra (init, validate, plan, apply)
 - login to AWS console (GUI) with your dedicated user student-tX-YY
     -  URL: https://gkcourse.awsapps.com/start/
-- Ensure you are in the region specified in variable "region" (e.g. eu-west-1)
+- Ensure you are in the region specified in variable "region" (e.g. eu-south-2)
 - Search for the "EC2" service in the top left search bar.  
 - In the EC2 service, left menu, click on "instances".  You should see 3 instances (VMs)
     - Look for the tags. Select one instance and look at the "Tags" tab.  
