@@ -7,6 +7,11 @@ aws sso login --profile sso-student
 - Explore further the state
 - Play with output blocks
 
+
+## How to use this lab directory
+- This lab directory contains a directory `solution/` with a possible terraform deployment.  It also contains a directory `workdir/` that should be empty -- if it is not empty for some reason,  feel free to delete all the contents.
+- My suggestion is that you work in the directory `workdir` building your own solution. Of course you can consult and even copy files from the `solution/` directory.
+
 ## Preliminary
 - Explore code - starting with ec2.tf
 - Note the `count = var.num_instances` inside the definition of the aws_instance.
