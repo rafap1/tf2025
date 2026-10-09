@@ -45,7 +45,9 @@ UserId: AROA3CTVCCH7WPFMEONCU:student00
 - You will find yourself in an AWS console for your specific AWS Account.
 - Now you need to move to the region where you created the infrastructure (by default eu-south-2).   This is given by the variable `region`.  You can find it in file `terraform.tfvars`
 - Then select the service EC2 (Elastic Compute Cloud) - you should see your VM / EC2 Instance.
-
+## TODO - añadir actividades
+- Segunda instancia - sin ip pública - 
+- Segunda instancia - cambiar nombre (Tag Name)
 ### 3. Clean up - `terraform destroy`
 - Now we are going to destroy the created infrastructure - so that you can practice this important phase of the infra lifecycle.  
     - It also  helps keep costs of the lab down and be environmentally friendly.
