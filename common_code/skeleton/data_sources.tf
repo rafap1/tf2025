@@ -1,4 +1,4 @@
-## Data sources to identify the default vpc and its subnets
+c## Data sources to identify the default vpc and its subnets
 ## https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc
 data "aws_vpc" "def_vpc" {
   default = true

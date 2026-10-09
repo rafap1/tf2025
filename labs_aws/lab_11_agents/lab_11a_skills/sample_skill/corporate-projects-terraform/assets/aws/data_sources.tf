@@ -1,3 +1,8 @@
+
+## Obtains information about account, user, etc. To be used in IAM policies or for example to include
+## account number in a bucket name
+data "aws_caller_identity" "current" {
+}
 ## Data sources to identify the default vpc and its subnets
 ## https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc
 data "aws_vpc" "def_vpc" {
@@ -14,7 +19,8 @@ data "aws_subnets" "def_vpc_subnets" {
 }
 
 
-## Data Source - this is used to get the latest Ubuntu AMI
+
+## Data Source - this is used to get the latest Ubuntu 24.04 AMI
 ## It is equivalent to a query to aws with a filter:
 ## "Give me the ami-id of the latest ubuntu 24.04 image for X86 architecture"
 data "aws_ami" "ubuntu_24_04_x86" {

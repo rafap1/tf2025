@@ -13,7 +13,8 @@ The skeleton files under `assets/` are the style guide. Match them rather than i
 1. Use the information in this document, complemented with the skeleton for the provider in use:
    - AWS: `assets/aws/`
    - GCP: `assets/gcp/` 
-   - Azure and other providers : not yet available - follow the AWS skeleton's structure and conventions, adapted to that provider.
+   - Azure: `assets/azure/`
+   - Other providers : not yet available - follow the AWS skeleton's structure and conventions, adapted to that provider.
 2. Read this and every file in that skeleton before writing any Terraform for the specific cloud.
 3. New module or root config: copy the skeleton and fill it in. Keep the file split, ordering and naming as-is.
 4. Existing code: match the skeleton's conventions in what you add or change. Don't restyle untouched code unless asked.
@@ -21,11 +22,15 @@ The skeleton files under `assets/` are the style guide. Match them rather than i
 ## Relationship to terraform-skill
 
 - `terraform-skill` (Anton Babenko) covers general practice: module design, testing, CI, security, state.
-- This skill covers personal style: file layout, naming, formatting and the. default boilerplate.
+- This skill covers corporate project style: file layout, naming, formatting and the. default boilerplate.
 - If they conflict on style, follow this skill. On correctness or security,  raise the conflict with the user rather than silently picking one.
 
-## File conventions
-- Where to put the `terraform` block.  This skill uses `versions.tf` file for the `terraform` block. Note though that in some projects we put the `terraform` block in file `providers.tf`.  Use `versions.tf` for new projects. Allow `providers.tf` if reviewing existing projects.
+## Terraform and provider versions:
+- For Terraform if not specified use version 1.15.1 - when in doubt ask.  Ignore the values in providers.tf or versions.tf.  They are just placeholders.
+
+## Terraform file conventions
+- Our projects have the file layout you can see in assets/ 
+- Where to put the `terraform` block.  In the samples under assets/ we put the `terraform` block in file `versions.tf`. Note though that in some projects we put the `terraform` block in file `providers.tf`.  Use `versions.tf` for new projects, but allow `providers.tf` if reviewing existing projects.
 
 ## Resource naming standards
 - Most projects have variables for :
@@ -34,7 +39,7 @@ The skeleton files under `assets/` are the style guide. Match them rather than i
   - project, e.g. "mdr"  (in GCP deployments, "project" has a very specific meaning so we often do not use this variable)
   - department, e.g. "legal" 
   - environment, e.g. "dev", "pro"
-- We use these variable values to build a standard `name_suffix` local variable that will be used for naming resources as they are created as in the example below.  Some times we use `name_prefix` instead of 
+- We use these variable values to build a standard `name_suffix` local variable that will be used for naming resources as they are created as in the example below.  Some times we use `name_prefix` instead of `name_suffix`.   When in doubt use suffix.
 
 ```
 ## AWS - locals.tf
@@ -60,14 +65,26 @@ resource "aws_iam_role" "ec2_instance" {
 ```
 ## AWS Specific
 - Use "eu-south-2" for AWS region 
-
+- Provider version - if not specified use 6.68.0 - we pin to exact provider version 
+- Modules from AWS and in general any module obtained from third parties : use a specific version of the module - if not provided, ask.
 
 ## GCP Specific
-- 
+- Use the google-beta provider only if required by any resource - same version as the google provider.
+- Modules from GCP and in general any module obtained from third parties : use a specific version of the module - if not provided, ask.
+
+## Azure specific
+- Use "spaincentral" for Azure location (the variable is called `location`, not `region`).
+- Provider version - if not specified use the version in `assets/azure/versions.tf` - we pin to exact provider version.
+- azurerm requires `subscription_id` in the provider block - pass it as a variable.
+- Modules from Azure and in general any module obtained from third parties : use a specific version of the module - if not provided, ask.
+
 ## .gitignore files for Terraform
-- Against the advice in the usual Terraform.gitignore file from GitHub, in principle we do not include in .gitignore `.tfvars` or `.tfvars.json` files.  The reason is that we never include any sensitive values in .tfvars files.
+- Against the advice in the usual Terraform .gitignore file from GitHub, in principle we do not include in .gitignore `.tfvars` or `.tfvars.json` files.  The reason is that we never include any sensitive values in .tfvars files.
+
 ## Tag / Label standards
-- If permitted by the provider, try to include as many tags (AWS) and labels (GCP) in the provider.
+- We try to tag (AWS, Azure) / label (GCP) every resource created by Terraform
+- If permitted by the provider, try to include tags (AWS) and labels (GCP) in the provider.
+- Azure: the azurerm provider has no default tags. Define `local.common_tags` in `locals.tf` (see `assets/azure/locals.tf`) and set `tags = local.common_tags` (or `merge(local.common_tags, {...})`) on every taggable resource.
 -  AWS: default_tags - see example in aws/providers.tf .  Note that we include company name in the tag name, as in the example below:
 
 ```hcl
@@ -84,7 +101,8 @@ provider "aws" {
   }
 }
 ```
-- GCP : similar using labels 
+- GCP : similar  using labels per the example under assets/
+
 ## Sharing information among different terraform stacks
 - When possible favor using data sources over shared remote state.  
 - Note that data sources are more useful in some providers (like AWS) than others

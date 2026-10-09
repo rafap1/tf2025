@@ -11,6 +11,7 @@ fi
 # Read the command and flatten newlines so "terraform \<newline> plan" is caught
 cmd=$(jq -r '.tool_input.command // empty' | tr '\n' ' ')
 
+## Consider allowing terraform init - it is needed to run terraform validate
 pattern='(^|[^[:alnum:]_.-])(terraform|tofu)[[:space:]](.*[[:space:]])?(init|plan|apply|destroy|import|state|refresh)([[:space:]]|$)'
 
 if printf '%s' "$cmd" | grep -Eq "$pattern"; then

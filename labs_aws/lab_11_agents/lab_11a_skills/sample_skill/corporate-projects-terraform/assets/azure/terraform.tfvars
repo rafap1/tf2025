@@ -1,0 +1,6 @@
+subscription_id = "00000000-0000-0000-0000-000000000000"
+location        = "spaincentral"
+company         = "lumon"
+project         = "mdr"
+environment     = "dev"
+cost_center     = "1234"
