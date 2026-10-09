@@ -1,5 +1,0 @@
-region       = "eu-west-1"
-profile      = "sso-p1"
-company      = "lumon"
-project      = "mdr"
-cost_center  = "1234"

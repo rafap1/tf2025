@@ -1,8 +1,0 @@
-region         = "europe-west1"
-zone           = "europe-west1-b"
-project_id     = "some-project"
-company        = "lumon"
-department     = "mdr"
-cost_center    = "54321"
-app_name       = "web"
-environment    = "dev"
